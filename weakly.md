@@ -16,7 +16,6 @@ Proyecto integrador equipo 6 - Digital House
 - Se vieron los puntos del sprint faltante y nos ponemos al día con los contendios.
 
 ### Viernes 08/04
--Miramos la clase 26
--Rehacemos el login, register del backend
--Implementamos login, register con "bases de datos" (JSON)
-
+- Miramos la clase 26
+- Rehacemos el login, register del backend
+- Implementamos login, register con "bases de datos" (JSON)
