@@ -1,23 +1,11 @@
 const express = require('express');
-const multer = require('multer');
 const path = require('path');
 const router = express.Router();
-// MULTER //
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/img/pruebas');
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
-
-var upload = multer({
-    storage: storage
-});
 
 // Controller Require //
 const productController = require('../controllers/product.Controller.js')
+// MULTER
+const uploadFile = require('../middleware/multerMiddleware')
 
 
 //*1. Listado de productos*//
@@ -28,13 +16,13 @@ router.delete('/list/delete/:id', productController.list_destroy);
 router.get('/create', productController.create);
 
 //*4. Acción de creación (a donde se envía el formulario*//
-router.post('/', upload.any(), productController.store);
+router.post('/', uploadFile.any(), productController.store);
 
 //*5. Formulario de edición de productos*//
 router.get('/edit/:id', productController.edit);
 
 //*6. Acción de edición (a donde se envía el formulario*//
-router.patch('/edit/:id', upload.any(), productController.update);
+router.patch('/edit/:id', uploadFile.any(), productController.update);
 
 //*7. Acción de borrado*//
 router.delete('/delete/:id', productController.destroy);

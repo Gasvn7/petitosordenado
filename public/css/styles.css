@@ -1,7 +1,8 @@
 @import url('partials/variables.css');
 @import url('partials/globals.css');
 @import url('partials/header.css');
-@import url('home.css');    
+@import url('partials/menu.css');
+@import url('home.css');
 @import url('login.css');
 @import url('productsviews.css');
 @import url('products.css');

@@ -27,7 +27,7 @@
                     <%= produc.stock %>
                 </td>
                 <td class="td-img"> <img class="product-img" src="/img/pruebas/<%= produc.image %>"
-                        alt=" Imágen de <%=produc.name%>">
+                        alt=" Imagen de <%=produc.name%>">
                 </td>
                 <td>
                     <%= produc.details%>
@@ -43,7 +43,7 @@
                 </td>
                 <td>
                     <script src="edit/<%= produc.id %>"></script>
-                    <a href="edit/<%= produc.id %>" id="reload"><button>Editar</button></a>
+                    <a href="edit/<%= produc.id %>"><button>Editar</button></a>
                     <form action="/products/list/delete/<%= produc.id %>?_method=DELETE" method="POST">
                         <button class="btn-crud" type="submit">Eliminar</button>
                     </form>
@@ -52,13 +52,6 @@
             <% }) %>
 
         </table>
-        <script>
-            const reload = document.getElementById('reload');
-
-            reload.addEventListener('click', el => { // el  es para indicar la ausencia de parámetros
-                location.reload();
-            });
-        </script>
         <%- include('partials/footer') %>
             </body>
 

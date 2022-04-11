@@ -1,40 +1,36 @@
 const express = require('express');
-const multer = require('multer');
 const path = require('path');
 const router = express.Router();
-const { check } = require('express-validator');
-
-
-// MULTER //
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'public/img/pruebas');
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-});
-
-var upload = multer({
-    storage: storage
-});
 
 //* Controller Require *//
 const userController = require('../controllers/user.Controller.js')
-const validationLogin = require('../middleware/validationLogin.js')
+
+//* MIDDLEWARE *//
+// Para enviar los errores de validación al usuario
+const validation = require('../middleware/validation')
+
+// Para verificar si ya inicio sesión el usuario
+const guestMiddleware = require('../middleware/guestMiddleware')
+
+// Para verificar redirigir al login si no inició sesión
+const authMiddleware = require('../middleware/authMiddleware')
+
+// MULTER 
+const uploadFile = require('../middleware/multerMiddleware')
 
 //* Routes *//
 // REGISTRO
-router.get('/register',userController.register);
-router.post('/', upload.any(), userController.registration);
+router.get('/register', guestMiddleware, userController.register);
+router.post('/', uploadFile.any(), validation, userController.registration);
 
-router.get('/login',validationLogin, userController.login);
-router.post('/user-login',[
-    check('email').isEmail().withMessage('Tu correo no sirve'),
-    check('password').isLength({min: 6}).withMessage('La contraseña debe tener 6 letras')
-] ,userController.processLogin);
+// LOGIN
+router.get('/login', guestMiddleware, userController.login);
+router.post('/login', userController.loginProcess);
 
+// PERFIL
+router.get('/perfil/', authMiddleware, userController.profile);
 
-
+// LOGOUT
+router.post('/logout', userController.logout);
 
 module.exports = router;
