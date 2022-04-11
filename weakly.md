@@ -14,3 +14,8 @@ Proyecto integrador equipo 6 - Digital House
 ### Domingo 03/04
 - Rutas y controlador de login subidos a Git.
 - Se vieron los puntos del sprint faltante y nos ponemos al día con los contendios.
+
+### Viernes 08/04
+- Miramos la clase 26
+- Rehacemos el login, register del backend
+- Implementamos login, register con "bases de datos" (JSON)
