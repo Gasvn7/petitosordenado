@@ -70,27 +70,44 @@ const userController = {
     },
     loginProcess: (req, res) => {
         let userToLogin = User.findByField('email', req.body.email);
-        console.log(req.body.remember_user);
         let remember = req.body.remember_user
+        console.log(req.body);
+        console.log('reqPassword ' + req.body.password);
+        console.log('user ' + userToLogin);
+        console.log('usercontra ' + userToLogin.password);
+        console.log('compare ' + bcryptjs.compareSync(req.body.password, userToLogin.password));
         if (userToLogin) {
             let passApproved = bcryptjs.compareSync(req.body.password, userToLogin.password);
-            if (passApproved) {
-                delete userToLogin.password;
-                req.session.userLogged = userToLogin;
+            if (req.body.password == "") {
+                return res.render('user-login', {
+                    errors: {
+                        password: {
+                            msg: 'Ingresa tu contraseña'
+                        }
+                    },
+                    oldData: req.body
+                })
+            } else {
+                if (passApproved == true) {
+                    console.log('Verdadero');
+                    delete userToLogin.password;
+                    req.session.userLogged = userToLogin;
 
-                if (remember) {
-                    res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 2 })
-                }
-
-                return res.redirect('/users/perfil');
-            }
-            return res.render('user-login', {
-                errors: {
-                    email: {
-                        msg: 'Registrate porfa'
+                    if (remember) {
+                        res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 2 })
                     }
+
+                    return res.redirect('/users/perfil');
+                } else if (passApproved == false) {
+                    return res.render('user-login', {
+                        errors: {
+                            password: {
+                                msg: 'La contraseña no coincide'
+                            }
+                        }
+                    })
                 }
-            })
+            }
         }
         return res.render('user-login', {
             errors: {
@@ -102,9 +119,6 @@ const userController = {
     },
     // Render de el perfil - Enviar el usuario como objeto
     profile: function (req, res) {
-
-        console.log(req.cookies.userEmail)
-
         res.render('user-profile', {
             user: req.session.userLogged
         });

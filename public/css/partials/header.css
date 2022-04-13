@@ -170,28 +170,33 @@ header {
 }
 
 .sub-menu-1,
-.sub-menu-2 {
+.sub-menu-2,
+.sub-menu-3 {
     display: none;
 }
 
 .sub-menu-1 ul li,
-.sub-menu-2 ul li {
+.sub-menu-2 ul li,
+.sub-menu-3 ul li {
     list-style: none;
     padding: 5px;
 }
 
 .sub-menu-1 ul li:hover,
-.sub-menu-2 ul li:hover {
+.sub-menu-2 ul li:hover,
+.sub-menu-3 ul li:hover {
     background-color: #fddeef;
 }
 
 .sub-menu-1 ul li a,
-.sub-menu-2 ul li a {
+.sub-menu-2 ul li a,
+.sub-menu-3 ul li a {
     text-decoration: none;
     color: black;
 }
 
 .header-account:hover .sub-menu-1,
+.header-account:hover .sub-menu-3,
 .nav-baritems:hover .sub-menu-2 {
     display: block;
     position: absolute;
@@ -199,6 +204,32 @@ header {
     padding: 5px;
     border-radius: 5px;
     z-index: 10;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    width: 93px;
+}
+
+.sub-menu-3 {
+    width: 93px;
+}
+
+.sub-menu-3 ul {
+    align-items: center;
+}
+
+.user-profile .user-image {
+    display: block;
+    width: 30px;
+    border-radius: 50%;
+}
+
+.user-profile .user-name {
+    font-size: 15px;
+    padding-left: 5px;
+    margin: 0;
 }
 
 /* RESPONSIVE */

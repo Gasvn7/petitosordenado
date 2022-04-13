@@ -55,17 +55,23 @@
             <div class="header-iconlist">
                 <div class="header-account">
                     <% if (locals.isLogged) { %>
-                        <img src="/img/pruebas/<% locals.userLogged.image %>" alt="foto de usuario">
-                        <p>
-                            <% locals.userLogged.first_name %>
-                        </p>
-                        <p>
-                            <% locals.userLogged.email %>
-                        </p>
-                        <a href="/users/perfil">Al perfil</a>
-                        <form action="/users/logout" method="POST">
-                            <input type="submit" value="Logout">
-                        </form>
+                        <div class="user-profile">
+                            <img class="user-image" src="/img/usersImages/<%= locals.userLogged.image %>"
+                                alt="Foto del usuario">
+                            <p class="user-name">
+                                <%= locals.userLogged.first_name %>
+                            </p>
+                        </div>
+                        <div class="sub-menu-3">
+                            <ul>
+                                <li><a href="/users/perfil">Al perfil</a></li>
+                                <li>
+                                    <form action="/users/logout" method="POST">
+                                        <button type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
                         <% } else { %>
                             <a href="/users/login">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -127,6 +133,11 @@
                 <li class="nav-baritems"><a href="/products/create">Crear</a></li>
                 <li class="nav-baritems"><a href="/products/1">Detalles</a></li>
                 <li class="nav-baritems"><a href="/products/list">Productos</a></li>
+                <% if (locals.isLogged) { %>
+                    <li class="nav-baritems"><a href="#">Tus productos</a></li>
+                    <li class="nav-baritems"><a href="#">Tus compras</a></li>
+                    <li class="nav-baritems"><a href="#">Favoritos</a></li>
+                    <% } %>
             </ul>
         </div>
     </div>

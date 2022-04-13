@@ -6,7 +6,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
-
+const userLoggedMiddleware = require('./middleware/userLoggedMiddleware')
 
 //* EXPRESS *//
 const app = express();
@@ -31,7 +31,6 @@ app.use(cookieParser());
 app.use(methodOverride('_method'));
 
 //* MIDDLEWARE DE APLICACIÓN
-const userLoggedMiddleware = require('./middleware/userLoggedMiddleware')
 app.use(userLoggedMiddleware);
 
 //*ROUTES*//

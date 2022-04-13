@@ -1,19 +1,18 @@
 [
- {
-  "id": 1,
-  "first_name": "Gastón",
-  "last_name": "Moreno",
-  "email": "morenogaston595@gmail.com",
-  "password": "$2a$10$ne7QivgQdh2zLwf32rZ2vu/RL.SL0gMZz3ploIYbg73pqsIuqNcya",
-  "image": "image-1649650099773.jfif"
- },
- {
-  "id": 2,
-  "first_name": "Gastón",
-  "last_name": "Moreno",
-  "email": "1234567@gmail.com",
-  "password": "$2a$10$LVHH4EZ1jv.80ZIpRx/XG.Oyjb0K4DqObJNdt4Cj3Vp1kVXqF/tfC",
-  "register": "",
-  "image": "image-1649703923006.jpg"
- }
+    {
+        "id": 1,
+        "first_name": "Gastón",
+        "last_name": "Moreno",
+        "email": "morenogaston595@gmail.com",
+        "password": "$2a$10$ne7QivgQdh2zLwf32rZ2vu/RL.SL0gMZz3ploIYbg73pqsIuqNcya",
+        "image": "image-1649650099773.jfif"
+    },
+    {
+        "id": 2,
+        "first_name": "Gastón",
+        "last_name": "Moreno",
+        "email": "1234567@gmail.com",
+        "password": "$2a$10$LVHH4EZ1jv.80ZIpRx/XG.Oyjb0K4DqObJNdt4Cj3Vp1kVXqF/tfC",
+        "image": "image-1649703923006.jpg"
+    }
 ]

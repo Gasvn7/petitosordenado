@@ -1,5 +1,6 @@
 const { body } = require('express-validator');
 
+// Verificando los campos del Registro
 module.exports = [
     body('first_name')
         .notEmpty().withMessage('Escribí un nombre'),

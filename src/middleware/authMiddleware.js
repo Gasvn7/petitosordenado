@@ -4,5 +4,5 @@ function authMiddleware(req, res, next) {
     }
     next();
 }
-
+// Redirigiendo al que Ingrese si intenta entrar en Perfil
 module.exports = authMiddleware
