@@ -19,3 +19,7 @@ Proyecto integrador equipo 6 - Digital House
 - Miramos la clase 26
 - Rehacemos el login, register del backend
 - Implementamos login, register con "bases de datos" (JSON)
+
+### Viernes 15/04
+- Realizamos el CSS del perfil
+
