@@ -1,58 +1,61 @@
-<%- include('partials/head', {title: "Listado de productos" }) %>
-    <%- include('partials/header') %>
-        <table id="customers">
-            <tr>
-                <th>id</th>
-                <th>Nombre</th>
-                <th>Stock</th>
-                <th>Imagen</th>
-                <th>Detalles</th>
-                <th>Precio</th>
-                <th>Talles</th>
-                <th>Categoría</th>
-                <th>Acciones</th>
-            </tr>
+<head>
+    <%- include('partials/head', {title: "Listado de productos" }) %>
+</head>
 
-            <tr>
-                <% products.forEach((produc)=>{ %>
-            <tr>
+<%- include('partials/header') %>
+    <table id="customers">
+        <tr>
+            <th>id</th>
+            <th>Nombre</th>
+            <th>Stock</th>
+            <th>Imagen</th>
+            <th>Detalles</th>
+            <th>Precio</th>
+            <th>Talles</th>
+            <th>Categoría</th>
+            <th>Acciones</th>
+        </tr>
 
-                <td class="iddd">
-                    <%= produc.id %>
-                </td>
-                <td>
-                    <%= produc.name %>
-                </td>
-                <td>
-                    <%= produc.stock %>
-                </td>
-                <td class="td-img"> <img class="product-img" src="/img/pruebas/<%= produc.image %>"
-                        alt=" Imagen de <%=produc.name%>">
-                </td>
-                <td>
-                    <%= produc.details%>
-                </td>
-                <td>
-                    <%= produc.price%>
-                </td>
-                <td>
-                    <%= produc.size%>
-                </td>
-                <td>
-                    <%= produc.category%>
-                </td>
-                <td>
-                    <script src="edit/<%= produc.id %>"></script>
-                    <a href="edit/<%= produc.id %>"><button>Editar</button></a>
-                    <form action="/products/list/delete/<%= produc.id %>?_method=DELETE" method="POST">
-                        <button class="btn-crud" type="submit">Eliminar</button>
-                    </form>
-                </td>
-            </tr>
-            <% }) %>
+        <tr>
+            <% products.forEach((produc)=>{ %>
+        <tr>
 
-        </table>
-        <%- include('partials/footer') %>
-            </body>
+            <td class="iddd">
+                <%= produc.id %>
+            </td>
+            <td>
+                <%= produc.name %>
+            </td>
+            <td>
+                <%= produc.stock %>
+            </td>
+            <td class="td-img"> <img class="product-img" src="/img/pruebas/<%= produc.image %>"
+                    alt=" Imagen de <%=produc.name%>">
+            </td>
+            <td>
+                <%= produc.details%>
+            </td>
+            <td>
+                <%= produc.price%>
+            </td>
+            <td>
+                <%= produc.size%>
+            </td>
+            <td>
+                <%= produc.category%>
+            </td>
+            <td>
+                <script src="edit/<%= produc.id %>"></script>
+                <a href="edit/<%= produc.id %>"><button>Editar</button></a>
+                <form action="/products/list/delete/<%= produc.id %>?_method=DELETE" method="POST">
+                    <button class="btn-crud" type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
 
-            </html>
+    </table>
+    <%- include('partials/footer') %>
+        </body>
+
+        </html>

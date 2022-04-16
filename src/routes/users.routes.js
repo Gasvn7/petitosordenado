@@ -28,9 +28,19 @@ router.get('/login', guestMiddleware, userController.login);
 router.post('/login', userController.loginProcess);
 
 // PERFIL
-router.get('/perfil/', authMiddleware, userController.profile);
+router.get('/perfil', authMiddleware, userController.profile);
+
+// PEDIDOS REALIZADOS POR EL USUARIO
+router.get('/pedidos', authMiddleware, userController.pedidos);
+
+// DIRECCIONES DEL USUARIO
+router.get('/direcciones', authMiddleware, userController.directions);
+
+// DETALLES DE LA CUENTA (VER Y PERSONALIZAR) --- TARJETA, PREFERENCIAS (perros, gatos)
+router.get('/detalles', authMiddleware, userController.details);
+/* router.post('/detalles', userController.detailsUpdate); --------------------- POR HACER*/
 
 // LOGOUT
-router.post('/logout', userController.logout);
+router.get('/logout', userController.logout);
 
 module.exports = router;

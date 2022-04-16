@@ -1,7 +1,6 @@
 const body = document.querySelector("body"),
     nav = document.querySelector("nav"),
-    sidebarOpen = document.querySelector(".sidebarOpen"),
-    sidebarClose = document.querySelector(".sidebarClose");
+    sidebarOpen = document.querySelector(".sidebarOpen")
 
 
 // sidebar //

@@ -1,0 +1,52 @@
+.tu-perfil {
+    font-size: 50px;
+    padding-left: 150px;
+}
+
+.user-profile-container {
+    display: flex;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-decoration: none;
+}
+
+.lateral-options {
+    margin-top: 40px;
+    border: 1px solid black;
+}
+
+.lateral-options ul li {
+    list-style: none;
+}
+
+.lateral-options ul li a {
+    font-family: "Open Sans", sans-serif;
+    cursor: pointer;
+    color: inherit;
+    text-decoration: none;
+}
+
+.lateral-options ul li a:hover {
+    color: rgb(111, 96, 223);
+}
+
+.profile-container {
+    display: flex;
+}
+
+.tu-img {
+    padding-left: 15px;
+}
+
+.tu-img img {
+    width: 350px;
+    border-radius: 25%;
+}
+
+.tu-email {
+    padding-left: 15px;
+}
+
+.explanation {
+    padding-left: 15px;
+}

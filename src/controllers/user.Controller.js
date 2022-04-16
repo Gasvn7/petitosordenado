@@ -71,42 +71,25 @@ const userController = {
     loginProcess: (req, res) => {
         let userToLogin = User.findByField('email', req.body.email);
         let remember = req.body.remember_user
-        console.log(req.body);
-        console.log('reqPassword ' + req.body.password);
-        console.log('user ' + userToLogin);
-        console.log('usercontra ' + userToLogin.password);
-        console.log('compare ' + bcryptjs.compareSync(req.body.password, userToLogin.password));
         if (userToLogin) {
             let passApproved = bcryptjs.compareSync(req.body.password, userToLogin.password);
-            if (req.body.password == "") {
+            if (passApproved) {
+                delete userToLogin.password;
+                req.session.userLogged = userToLogin;
+
+                if (remember) {
+                    res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 60 });
+                }
+                return res.redirect('/users/perfil');
+
+            } else if (passApproved == false) {
                 return res.render('user-login', {
                     errors: {
                         password: {
-                            msg: 'Ingresa tu contraseña'
+                            msg: 'La contraseña no coincide'
                         }
-                    },
-                    oldData: req.body
-                })
-            } else {
-                if (passApproved == true) {
-                    console.log('Verdadero');
-                    delete userToLogin.password;
-                    req.session.userLogged = userToLogin;
-
-                    if (remember) {
-                        res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 2 })
                     }
-
-                    return res.redirect('/users/perfil');
-                } else if (passApproved == false) {
-                    return res.render('user-login', {
-                        errors: {
-                            password: {
-                                msg: 'La contraseña no coincide'
-                            }
-                        }
-                    })
-                }
+                })
             }
         }
         return res.render('user-login', {
@@ -123,6 +106,20 @@ const userController = {
             user: req.session.userLogged
         });
     },
+    //* Vistas recién creadas y lógica por realizar: 
+    //* Pedidos, Direcciones, detailsUpdate
+    //! Enviar pedidos o compras realizadas por el usuario y mostrarlas en la vista
+    pedidos: (req, res) => {
+        res.render('user-pedidos')
+    },
+    //! Mostrar la vista direcciones y enviar las direcciones guardadas del usuario
+    directions: (req, res) => {
+        res.render('user-directions')
+    },
+    //! Mostrar la vista y el formulario para que el usuario pueda modificar sus datos
+    details: (req, res) => {
+        res.render('user-details')
+    },
     // Cerrar sesión - Borrar el session
     logout: function (req, res) {
         res.clearCookie('userEmail');
@@ -130,10 +127,5 @@ const userController = {
         return res.redirect('/');
     }
 }
-
-
-
-
-
 
 module.exports = userController;

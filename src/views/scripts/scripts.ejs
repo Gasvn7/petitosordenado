@@ -57,3 +57,22 @@
         document.documentElement.scrollTop = 0;
     }
 </script>
+
+<script>
+    //*     REVISION      *//
+    //Desplegar opciones del perfil - HEADER
+    const profile_options = document.querySelector(".profile_options"),
+        profile_view = document.querySelector(".profile-view")
+
+    // Desplegar - LÓGICA
+    profile_view.addEventListener("click", () => {
+        profile_options.classList.add("active");
+    })
+    body.addEventListener("click", e => {
+        let clickedElm = e.target;
+
+        if (!clickedElm.classList.contains("profile_view") && !clickedElm.classList.contains("profile_options")) {
+            profile_options.classList.remove("active");
+        }
+    })
+</script>

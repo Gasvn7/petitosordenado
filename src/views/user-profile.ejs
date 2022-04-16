@@ -1,16 +1,42 @@
-<%- include('partials/head', {title: "Perfil de " + user.first_name }) %>
-    <%- include('partials/header') %>
+<head>
+    <%- include('partials/head', {title: "Perfil de " + user.first_name }) %>
+</head>
 
-        <body>
-            <p>Hola <%= user.first_name + ' ' + user.last_name %>
-            </p>
-            <img src="/img/usersImages/<%= user.image %>" alt="imagen de perfil"><br>
-            <span>
-                <%= user.email %>
-            </span><br>
-            <form action="/users/logout" method="POST">
-                <input type="submit" value="Logout">
-            </form>
-        </body>
+<%- include('partials/header') %>
 
-        </html>
+    <body>
+        <h1 class="tu-perfil">Tu perfil</h1>
+        <div class="user-profile-container">
+            <div class="lateral-options">
+                <ul>
+                    <li><a href="/users/perfil">Perfil</a></li>
+                    <li><a href="/users/pedidos">Pedidos Realizados</a></li>
+                    <li><a href="/users/direcciones">Direcciones</a></li>
+                    <li><a href="/users/detalles">Detalles de la cuenta</a></li>
+                    <li><a href="/users/logout">Cerrar Sesión</a></li>
+                </ul>
+            </div>
+            <div class="profile-container">
+                <div class="tu-img">
+                    <p>Tu foto</p>
+                    <img class="profile-image" src="/img/usersImages/<%= user.image %>" alt="imagen de perfil"><br>
+                </div>
+                <div class="tu-email">
+                    <p>Tu email</p>
+                    <span>
+                        <%= user.email %>
+                    </span>
+                </div>
+                <div class="explanation">
+                    <p>Info</p>
+                    <span>Pedidos Realizados: Tus pedidos ya realizados, a hacer e historial.</span><br>
+                    <span>Direcciones: Tus direcciones de envío y de facturación.</span><br>
+                    <span>Detalles de cuenta: Tus datos personales. Ingresa para modificarlos.</span><br>
+                    <span>Cerrar Sesión para finalizar sesión.</span>
+                </div>
+            </div>
+        </div>
+        <%- include('partials/footer') %>
+    </body>
+
+    </html>
