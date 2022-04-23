@@ -23,3 +23,9 @@ Proyecto integrador equipo 6 - Digital House
 ### Viernes 15/04
 - Realizamos el CSS del perfil
 
+### Viernes 22/04
+- Diagrama en base de dato en pdf 
+- Script de estructura (crear las tablas) 
+- Creacion de carpeta sequualize 
+- crud (videos) 
+- script de datos (opcional)
