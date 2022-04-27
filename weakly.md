@@ -22,4 +22,12 @@ Proyecto integrador equipo 6 - Digital House
 
 ### Viernes 15/04
 - Realizamos el CSS del perfil
+- Tabla Ordenes
 
+### Viernes 22/04
+- Terminamos Punto 4 del Sprint6 (Diagrama de base de datos).
+
+### Martes 26/04
+- Terminamos Punto 5 del Sprint6 (Script de estructura). Creamos la carpeta sql y dentro el archivo structure.sql con el código para crear la base de datos desde 0.
+- Terminamos Punto 7 del Sprint6 (Creación de carpeta Sequelize y archivos de modelos) Creamos la carpeta Database con las carpetas config y models dentro (Product, User, Size, Category, etc.).
+- Modificamos el diagrama de base de datos.
