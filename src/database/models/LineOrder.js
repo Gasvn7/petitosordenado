@@ -20,6 +20,7 @@ module.exports = (sequelize, dataTypes) => {
         order_id: dataTypes.INTEGER,
     };
     let config = {
+        tableName: 'lineorder',
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
@@ -28,11 +29,11 @@ module.exports = (sequelize, dataTypes) => {
     const LineOrder = sequelize.define(alias, cols, config);
 
     LineOrder.associate = models => {
-        LineOrder.belongsTo(models.product, {
+        LineOrder.belongsTo(models.Product, {
             as: 'products',
             foreignKey: 'product_id'
         });
-        LineOrder.belongsTo(models.order, {
+        LineOrder.belongsTo(models.Order, {
             as: 'orders',
             foreignKey: 'order_id'
         });

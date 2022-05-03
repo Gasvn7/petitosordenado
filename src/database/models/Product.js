@@ -33,6 +33,7 @@ module.exports = (sequelize, dataTypes) => {
         size_id: dataTypes.INTEGER,
     };
     let config = {
+        tableName: 'products',
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
@@ -41,25 +42,25 @@ module.exports = (sequelize, dataTypes) => {
     const Product = sequelize.define(alias, cols, config);
 
     Product.associate = models => {
-        Product.belongsTo(models.category, {
+        Product.belongsTo(models.Category, {
             as: 'categories',
             foreignKey: 'category_id'
         });
-        Product.belongsTo(models.brand, {
+        Product.belongsTo(models.Brand, {
             as: 'brands',
             foreignKey: 'brand_id'
         });
-        Product.belongsTo(models.size, {
+        Product.belongsTo(models.Size, {
             as: 'sizes',
             foreignKey: 'size_id'
         });
-        Product.belongsToMany(models.order, {
+        Product.belongsToMany(models.Order, {
             as: 'orders',
             through: 'lineOrder',
             foreignKey: 'product_id',
             otherKey: 'order_id',
             timestamps: false
-        })
+        });
     };
 
     return Product

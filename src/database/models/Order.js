@@ -15,6 +15,7 @@ module.exports = (sequelize, dataTypes) => {
         user_id: dataTypes.INTEGER,
     };
     let config = {
+        tableName: 'orders',
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
@@ -23,11 +24,11 @@ module.exports = (sequelize, dataTypes) => {
     const Order = sequelize.define(alias, cols, config);
 
     Order.associate = models => {
-        Order.belongsTo(models.user, {
+        Order.belongsTo(models.User, {
             as: 'users',
             foreignKey: 'user_id',
         });
-        Order.belongsToMany(models.product, {
+        Order.belongsToMany(models.Product, {
             as: 'products',
             through: 'lineOrder',
             foreignKey: 'order_id',

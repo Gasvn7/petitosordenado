@@ -4,10 +4,11 @@ const router = express.Router();
 
 // Controller Require //
 const productController = require('../controllers/product.Controller.js')
+const pruebaController = require('../controllers/prueba.js')
 // MULTER
 const uploadFile = require('../middleware/multerMiddleware')
 
-
+router.get('/prueba', pruebaController.mostrar);
 //*1. Listado de productos*//
 router.get('/list', productController.showPrdcts);
 router.delete('/list/delete/:id', productController.list_destroy);

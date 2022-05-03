@@ -14,6 +14,7 @@ module.exports = (sequelize, dataTypes) => {
         }
     };
     let config = {
+        tableName: 'sizes',
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
@@ -22,8 +23,8 @@ module.exports = (sequelize, dataTypes) => {
     const Size = sequelize.define(alias, cols, config);
 
     Size.associate = models => {
-        Size.hasMany(models.product, {
-            as: 'products', 
+        Size.hasMany(models.Product, {
+            as: 'products',
             foreignKey: 'size_id'
         })
     };

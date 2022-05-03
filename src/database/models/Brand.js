@@ -1,3 +1,4 @@
+
 module.exports = (sequelize, dataTypes) => {
     let alias = 'Brand';
     let cols = {
@@ -9,9 +10,12 @@ module.exports = (sequelize, dataTypes) => {
         brand: {
             type: dataTypes.STRING,
             allowNull: false
-        }
+        },
+        /*  created_at: dataTypes.TIMESTAMP,
+         updated_at: dataTypes.TIMESTAMP, */
     };
     let config = {
+        tableName: 'brands',
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
@@ -20,11 +24,13 @@ module.exports = (sequelize, dataTypes) => {
     const Brand = sequelize.define(alias, cols, config);
 
     Brand.associate = models => {
-        Brand.hasMany(models.product, {
+        Brand.hasMany(models.Product, {
             as: 'products',
             foreignKey: 'brand_id'
         })
     };
+
+
 
     return Brand
 }

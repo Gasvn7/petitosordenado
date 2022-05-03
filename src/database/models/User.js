@@ -38,6 +38,7 @@ module.exports = (sequelize, dataTypes) => {
         }
     };
     let config = {
+        tableName: 'users',
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
@@ -46,7 +47,7 @@ module.exports = (sequelize, dataTypes) => {
     const User = sequelize.define(alias, cols, config);
 
     User.associate = models => {
-        User.hasMany(models.order, {
+        User.hasMany(models.Order, {
             as: 'orders',
             foreignKey: 'order_id'
         })
