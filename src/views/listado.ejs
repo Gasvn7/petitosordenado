@@ -1,0 +1,61 @@
+<head>
+    <%- include('partials/head', {title: "Listado de productos" }) %>
+</head>
+
+<%- include('partials/header') %>
+    <table id="customers">
+        <tr>
+            <th>id</th>
+            <th>Nombre</th>
+            <th>Stock</th>
+            <th>Detalles</th>
+            <th>Precio</th>
+            <th>Marca</th>
+            <th>Talles</th>
+            <th>Categoría</th>
+            <th>Acciones</th>
+        </tr>
+
+        <tr>
+            <% producto.forEach((producto)=>{ %>
+        <tr>
+
+            <td class="iddd">
+                <%= producto.id %>
+            </td>
+            <td>
+                <%= producto.name %>
+            </td>
+            <td>
+                <%= producto.quantity %>
+            </td>
+            <td>
+                <%= producto.details%>
+            </td>
+            <td>
+                <%= producto.price%>
+            </td>
+            <td>
+                <%= producto.brands.brand%>
+            </td>
+            <td>
+                <%= producto.sizes.size%>
+            </td>
+            <td>
+                <%= producto.categories.category%>
+            </td>
+            <td>
+                <script src="edit/<%= producto.id %>"></script>
+                <a href="edit/<%= producto.id %>"><button>Editar</button></a>
+                <form action="/products/list/delete/<%= producto.id %>?_method=DELETE" method="POST">
+                    <button class="btn-crud" type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        <% }) %>
+
+    </table>
+    <%- include('partials/footer') %>
+        </body>
+
+        </html>

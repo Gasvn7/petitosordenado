@@ -1,6 +1,9 @@
 const fs = require('fs');
 const path = require('path');
-const { receiveMessageOnPort } = require('worker_threads');
+const db = require('../database/models');
+const sequelize = db.sequelize;
+const { Op } = require("sequelize");
+
 
 const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
 const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
@@ -104,7 +107,10 @@ const productController = {
         let finalProd = products.filter(product => product.id != id);
         fs.writeFileSync(productsFilePath, JSON.stringify(finalProd, null, ' '));
         res.redirect('/products/list');
-    }
+    },
+    //! CRUUUUUUUUUUUUUUUUD db
+
+    
 }
 
 

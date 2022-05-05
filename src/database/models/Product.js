@@ -10,23 +10,23 @@ module.exports = (sequelize, dataTypes) => {
         // updated_at: dataTypes.TIMESTAMP,
         name: {
             type: dataTypes.STRING,
-            allowNull: false
+            /*  allowNull: false */
         },
         price: {
             type: dataTypes.INTEGER,
-            allowNull: false
+            /*    allowNull: false */
         },
         quantity: {
             type: dataTypes.INTEGER,
-            allowNull: false
+            /* allowNull: false */
         },
         details: {
             type: dataTypes.STRING,
-            allowNull: false
+            /* allowNull: false */
         },
         image: {
             type: dataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         brand_id: dataTypes.INTEGER,
         category_id: dataTypes.INTEGER,

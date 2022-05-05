@@ -35,3 +35,6 @@ Proyecto integrador equipo 6 - Digital House
 ## Sábado 30/04
 - Re-haciendo y corrigiendo errores sobre la tabla (pasar nombres a plural en la base de datos).
 - Probamos si están realizados de manera correcta los modelos y agregamos las columnas "created_at" y "updated_at" en la tablas (MySQL).
+
+## Martes 03/05
+- Comenzamos punto 8 del Sprint6 (CRUD). Listado de productos realizado. Creación de producto con errores.

@@ -34,10 +34,4 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-/* //Brands
-db.Brand.hasMany(db.Product);
-
-//Products
-db.Product.belongsTo(db.Brand); */
-
 module.exports = db;
