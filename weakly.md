@@ -38,3 +38,7 @@ Proyecto integrador equipo 6 - Digital House
 
 ## Martes 03/05
 - Comenzamos punto 8 del Sprint6 (CRUD). Listado de productos realizado. Creación de producto con errores.
+## Viernes 06/05
+- Terminamos punto 8 del Sprint6 (CRUD). Errores de creación de productos solucionados. Crear, editar, eliminar y detalles terminados.
+- Damos por terminado Sprint6.
+- (Opcional) Añadir archivo .sql con código para llenar las tablas.

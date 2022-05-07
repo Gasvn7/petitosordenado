@@ -1,11 +1,12 @@
-.main-crud{
-    display:flex;
+.main-crud {
+    display: flex;
     justify-content: center;
     align-items: center;
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
 }
-.crud-contanier{
+
+.crud-contanier {
     background-color: rgb(255, 255, 255);
     border: 2px solid black;
     margin-top: 25px;
@@ -15,53 +16,65 @@
     padding: 10px;
     width: 800px;
 }
-.crud-form{
-    display:flex;
-    padding: 0 50px; 
+
+.crud-form {
+    display: flex;
+    padding: 0 50px;
     flex-wrap: wrap;
 }
 
-.main-crud h1, .main-crud h3{
+.main-crud h1,
+.main-crud h3 {
     width: 100%;
     font-weight: bold;
 }
-.crud{
-    width:50%;
+
+.crud {
+    width: 50%;
     padding: 10px 30px;
     outline: none;
 }
-.crud input{
-    width:100%;
+
+.crud input {
+    width: 100%;
     outline: none;
 }
-.crud-sizes select,.crud-categories select{
-    width:100%;
-    
+
+.crud-sizes select,
+.crud-categories select,
+.crud-brand select {
+    width: 100%;
+
 }
-.crud-image{
+
+.crud-image {
     padding: 10px 30px;
 }
-.crud-image img{
+
+.crud-image img {
     max-width: 16rem;
     max-height: 12rem;
 }
 
-.crud-details{
+.crud-details {
     padding: 10px 30px;
     width: 100%;
 }
-.crud-details textarea{
-    width:100%;
+
+.crud-details textarea {
+    width: 100%;
     outline: none;
-    color:rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
 }
-.crud-buttons{
+
+.crud-buttons {
     width: 100%;
     display: flex;
     justify-content: space-around;
     padding: 20px 0;
 }
-.crud-buttons button{
+
+.crud-buttons button {
     font-size: 15px;
     font-weight: bold;
     padding: 15px;
@@ -69,7 +82,8 @@
     border-radius: 20px;
     transition: all 0.5s ease;
 }
-.crud-buttons button:hover{
+
+.crud-buttons button:hover {
     cursor: pointer;
-    background-color: rgba(0, 122, 122,0.3);
+    background-color: rgba(0, 122, 122, 0.3);
 }

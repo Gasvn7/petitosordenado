@@ -1,0 +1,81 @@
+<head>
+    <%- include('partials/head', {title: "Editando: " + Product.name }) %>
+</head>
+
+<%- include('partials/header') %>
+    <main class="main-crud">
+        <section class="crud-contanier">
+            <form action="/products/editar/<%= Product.id %>?_method=PATCH" method="POST" class="crud-form"
+                enctype="multipart/form-data">
+                <h1>PRODUCTO NUEVO</h1>
+                <div class="crud crud-name">
+                    <h3>Nombre</h3>
+                    <input type="text" id="name" name="name" value="<%= Product.name %>">
+                </div>
+                <div class="crud crud-prices">
+                    <h3>Precio</h3>
+                    <input type="number" id="price" name="price" step="000.000.000" value="<%= Product.price %>">
+                </div>
+                <div class="crud crud-sizes">
+                    <h3>Talle</h3>
+                    <select name="size" id="size" required>
+                        <% size.forEach(size=> { %>
+                            <option value="<%= size.id %>" <% if (Product.size_id==size.id) { %>
+                                <%= 'selected' %>
+                                    <% }; %>><%= size.size %>
+                            </option>
+                            <% }); %>
+                    </select>
+                </div>
+                <div class="crud crud-stock">
+                    <h3>Stock</h3>
+                    <input type="text" id="stock" name="stock" value="<%= Product.quantity %>">
+                </div>
+                <div class="crud crud-categories">
+                    <h3>Categoría</h3>
+                    <select name="category" id="category" required>
+                        <% category.forEach(category=> { %>
+                            <option value="<%= category.id %>" <% if (Product.category_id==category.id) { %>
+                                <%= 'selected' %>
+                                    <% }; %>><%= category.category %>
+                            </option>
+                            <% }); %>
+                    </select>
+                </div>
+                <div class="crud crud-brand">
+                    <h3>Marca</h3>
+                    <select name="brand" id="brand" required>
+                        <% brand.forEach(brand=> { %>
+                            <option value="<%= brand.id %>" <% if (Product.brand_id==brand.id) { %>
+                                <%= 'selected' %>
+                                    <% }; %>><%= brand.brand %>
+                            </option>
+                            <% }); %>
+                    </select>
+                </div>
+                <div class="crud-image">
+                    <h3>Imagen</h3>
+                    <img class="product-img" src="/img/usersImages/<%= Product.image %>" alt="<%= Product.image%>">
+                    <input type="file" id="image" name="image">
+                </div>
+                <div class="crud-details">
+                    <h3>Detalles</h3>
+                    <textarea name="details" id="details" cols="30" rows="5"><%= Product.details %></textarea>
+                </div>
+                <div class="crud-buttons">
+                    <button type="submit">Guardar cambios</button>
+
+                    <button type="reset">Cancelar</button>
+            </form>
+
+            <form action="/products/destruir/<%= Product.id %>?_method=DELETE" method="POST">
+                <button class="btn-crud" type="submit">Eliminar Producto</button>
+            </form>
+
+            </div>
+        </section>
+    </main>
+    <%- include('partials/footer') %>
+        </body>
+
+        </html>

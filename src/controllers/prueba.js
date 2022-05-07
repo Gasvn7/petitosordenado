@@ -34,7 +34,6 @@ const pruebaController = {
         })
             .then(producto => {
                 res.render('detallito', { producto: producto })
-                console.log({ producto: producto })
             })
     },
     /* router.get('/prueba', pruebaController.mostrar);
@@ -47,11 +46,12 @@ const pruebaController = {
     add: function (req, res) {
         let brand = db.Brand.findAll();
         let category = db.Category.findAll();
+        let size = db.Size.findAll();
 
         Promise
-            .all([brand, category])
-            .then(([brand, category]) => {
-                return res.render(path.resolve(__dirname, '..', 'views', 'creando'), { brand, category })
+            .all([brand, category, size])
+            .then(([brand, category, size]) => {
+                return res.render(path.resolve(__dirname, '..', 'views', 'creando'), { brand, category, size })
             })
             .catch(error => res.send(error))
     },
@@ -65,63 +65,60 @@ const pruebaController = {
                     quantity: req.body.stock,
                     category_id: req.body.category,
                     brand_id: req.body.brand,
-                    /* image: req.file[0].filename, */
+                    image: req.files[0].filename,
                     details: req.body.details
                 }
             )
             .then(() => {
                 return res.redirect('/')
             })
-            .catch(error => res.send(error))
+            .catch(error => res.send(error));
     },
-    edit: function (req, res) {
-        let movieId = req.params.id;
-        let promMovies = Movies.findByPk(movieId, { include: ['genre', 'actors'] });
-        let promGenres = Genres.findAll();
-        let promActors = Actors.findAll();
+    editar: function (req, res) {
+        let productId = req.params.id;
+        let Product = db.Product.findByPk(productId, {
+            include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
+        });
+        let brand = db.Brand.findAll();
+        let category = db.Category.findAll();
+        let size = db.Size.findAll();
+
         Promise
-            .all([promMovies, promGenres, promActors])
-            .then(([Movie, allGenres, allActors]) => {
-                Movie.release_date = moment(Movie.release_date).format('L');
-                return res.render(path.resolve(__dirname, '..', 'views', 'moviesEdit'), { Movie, allGenres, allActors })
+            .all([Product, brand, category, size])
+            .then(([Product, brand, category, size]) => {
+                Product.release_date = moment(Product.release_date).format('L');
+                return res.render(path.resolve(__dirname, '..', 'views', 'editando'), { Product, brand, category, size })
             })
             .catch(error => res.send(error))
     },
-    update: function (req, res) {
-        let movieId = req.params.id;
-        Movies
+    actualizar: function (req, res) {
+        let productId = req.params.id;
+        db.Product
             .update(
                 {
-                    title: req.body.title,
-                    rating: req.body.rating,
-                    awards: req.body.awards,
-                    release_date: req.body.release_date,
-                    length: req.body.length,
-                    genre_id: req.body.genre_id
+                    name: req.body.name,
+                    price: req.body.price,
+                    size_id: req.body.size,
+                    quantity: req.body.stock,
+                    category_id: req.body.category,
+                    brand_id: req.body.brand,
+                    image: req.files[0] != undefined ? req.files[0].filename : db.Product.image,
+                    details: req.body.details
                 },
                 {
-                    where: { id: movieId }
+                    where: { id: productId }
                 })
             .then(() => {
-                return res.redirect('/movies')
+                return res.redirect('/products/listado')
             })
             .catch(error => res.send(error))
     },
-    delete: function (req, res) {
-        let movieId = req.params.id;
-        Movies
-            .findByPk(movieId)
-            .then(Movie => {
-                return res.render(path.resolve(__dirname, '..', 'views', 'moviesDelete'), { Movie })
-            })
-            .catch(error => res.send(error))
-    },
-    destroy: function (req, res) {
-        let movieId = req.params.id;
-        Movies
-            .destroy({ where: { id: movieId }, force: true }) // force: true es para asegurar que se ejecute la acción
+    destruir: function (req, res) {
+        let productId = req.params.id;
+        db.Product
+            .destroy({ where: { id: productId }, force: true }) // force: true es para asegurar que se ejecute la acción
             .then(() => {
-                return res.redirect('/movies')
+                return res.redirect('/products/listado')
             })
             .catch(error => res.send(error))
     }
