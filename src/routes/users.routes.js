@@ -3,7 +3,8 @@ const path = require('path');
 const router = express.Router();
 
 //* Controller Require *//
-const userController = require('../controllers/user.Controller.js')
+/* const userController = require('../controllers/user.Controller.js') */
+const pruebaUser = require('../controllers/pruebaUser.js')
 
 //* MIDDLEWARE *//
 // Para enviar los errores de validación al usuario
@@ -19,28 +20,24 @@ const authMiddleware = require('../middleware/authMiddleware')
 const uploadFile = require('../middleware/multerMiddleware')
 
 //* Routes *//
+
 // REGISTRO
-router.get('/register', guestMiddleware, userController.register);
-router.post('/', uploadFile.any(), validation, userController.registration);
-
+router.get('/register', guestMiddleware, pruebaUser.register);
+router.post('/', uploadFile.any(), validation, pruebaUser.registration);
 // LOGIN
-router.get('/login', guestMiddleware, userController.login);
-router.post('/login', userController.loginProcess);
-
+router.get('/login', guestMiddleware, pruebaUser.login);
+router.post('/login', pruebaUser.loginProcess);
 // PERFIL
-router.get('/perfil', authMiddleware, userController.profile);
+router.get('/perfil', authMiddleware, pruebaUser.profile);
+// LOGOUT
+router.get('/logout', pruebaUser.logout);
 
 // PEDIDOS REALIZADOS POR EL USUARIO
-router.get('/pedidos', authMiddleware, userController.pedidos);
-
+router.get('/pedidos', authMiddleware, pruebaUser.pedidos);
 // DIRECCIONES DEL USUARIO
-router.get('/direcciones', authMiddleware, userController.directions);
-
+router.get('/direcciones', authMiddleware, pruebaUser.directions);
 // DETALLES DE LA CUENTA (VER Y PERSONALIZAR) --- TARJETA, PREFERENCIAS (perros, gatos)
-router.get('/detalles', authMiddleware, userController.details);
+router.get('/detalles', authMiddleware, pruebaUser.details);
 /* router.post('/detalles', userController.detailsUpdate); --------------------- POR HACER*/
-
-// LOGOUT
-router.get('/logout', userController.logout);
 
 module.exports = router;

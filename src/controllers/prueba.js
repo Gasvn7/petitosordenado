@@ -8,7 +8,7 @@ const moment = require('moment');
 const pruebaController = {
     mostrar: (req, res) => {
         let Producto = db.Product.findAll({
-            include: ['brands']
+            include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
         });
         let Brand = db.Brand.findAll();
 
@@ -36,13 +36,6 @@ const pruebaController = {
                 res.render('detallito', { producto: producto })
             })
     },
-    /* router.get('/prueba', pruebaController.mostrar);
-      router.get('/crear', pruebaController.add);
-      router.post('/', uploadFile.any(), pruebaController.crear);
-      router.get('/listado', pruebaController.listadodeproductos);
-      router.get('/editar/:id', pruebaController.editar);
-      router.patch('/editar/:id', uploadFile.any(), pruebaController.actualizar);
-      router.delete('/destruir/:id', productController.destruir); */
     add: function (req, res) {
         let brand = db.Brand.findAll();
         let category = db.Category.findAll();

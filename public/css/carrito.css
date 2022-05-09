@@ -3,58 +3,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,100&display=swap');
 
 /*-----------------------------Carrito---------------------------------*/
-.shoppingcart-boxmain{
+.shoppingcart-boxmain {
     padding: 0px 10px 10px 10px;
 }
-.shoppingcart-boxmain{
+
+.shoppingcart-boxmain {
     margin: 40px auto;
 }
-.table-shoppingcart{
+
+.table-shoppingcart {
     width: 100%;
     border-collapse: collapse;
 }
-.shoppingcart-info{
+
+.shoppingcart-info {
     display: flex;
     flex-wrap: wrap;
 }
-.shoppingcart-barra{
+
+.shoppingcart-barra {
     text-align: left;
     padding: 5px;
     color: black;
     background: rgb(236, 203, 11);
 }
-.shoppingcart-pricetable{
+
+.shoppingcart-pricetable {
     font-size: 13px;
 }
-.shoppingcard-details{
+
+.shoppingcard-details {
     padding: 10px 5px;
 }
-.shoppingcard-details input{
+
+.shoppingcard-details input {
     width: 40px;
     height: 30px;
     padding: 5px;
 }
-.remove{
+
+.remove {
     color: brown;
     font-size: 12px;
 }
-.shoppingcart-info img{
+
+.shoppingcart-info img {
     width: 80px;
     height: 80px;
     margin-right: 10px;
 }
-.shoppingcart-total{
+
+.shoppingcart-total {
     display: flex;
     justify-content: flex-end;
 }
-.shoppingcart-total table{
+
+.shoppingcart-total table {
     border-top: 3px solid rgb(255, 238, 0);
     width: 100%;
     max-width: 400px;
 }
-td:last-child{
-   text-align: right;
-}
-th:last-child{
+
+td:last-child {
     text-align: right;
- }
+}
+
+th:last-child {
+    text-align: right;
+}
