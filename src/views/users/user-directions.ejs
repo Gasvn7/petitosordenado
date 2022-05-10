@@ -1,8 +1,8 @@
 <head>
-    <%- include('partials/head', {title: "Detalles de tu cuenta" }) %>
+    <%- include('../partials/head', {title: "Tus direcciones" }) %>
 </head>
 
-<%- include('partials/header') %>
+<%- include('../partials/header') %>
 
     <body>
         <h1 class="tu-perfil">Tu perfil</h1>
@@ -17,13 +17,17 @@
                 </ul>
             </div>
             <div>
-                <p>ACA VA UN FORMULARIO</p>
+                <p>ACA VAN TUS DIRECCIONES. Por ahora solo tenemos concilio con la d33p w3b, si amaneces con un
+                    pulmón menos, no fue nuestro servicio</p>
                 <span>Spoiler: Falta el CSS</span><br>
-                <span>Se mostrara un formulario con los datos del usuario ya ingresados, y por ingresar, y si los
-                    quisiera modificar tendrá su botón para actualizarlos.</span>
+                <span>Se mostrarán las direcciones de: </span>
+                <ul>
+                    <li>Dirección de Facturación</li>
+                    <li>Dirección de Envío</li>
+                </ul>
             </div>
         </div>
     </body>
-    <%- include('partials/footer') %>
+    <%- include('../partials/footer') %>
 
-        </html>
+    </html>

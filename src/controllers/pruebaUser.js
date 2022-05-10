@@ -6,7 +6,7 @@ const { validationResult } = require('express-validator');
 const pruebaUserController = {
 
     register: (req, res) => {
-        res.render('user-register');
+        res.render('users/user-register');
 
     },
 
@@ -14,7 +14,7 @@ const pruebaUserController = {
         const resultValidation = validationResult(req);
 
         if (resultValidation.errors.length > 0) {
-            return res.render('user-register', {
+            return res.render('users/user-register', {
                 errors: resultValidation.mapped(),
                 oldData: req.body
             })
@@ -26,7 +26,7 @@ const pruebaUserController = {
         })
             .then(user => {
                 if (user != null) {
-                    return res.render('user-register', {
+                    return res.render('users/user-register', {
                         errors: {
                             email: {
                                 msg: 'Este email ya está registrado'
@@ -55,7 +55,7 @@ const pruebaUserController = {
     },
 
     login: (req, res) => {
-        res.render('user-login');
+        res.render('users/user-login');
     },
     loginProcess: (req, res) => {
         db.User.findOne({
@@ -77,7 +77,7 @@ const pruebaUserController = {
                         return res.redirect('/')
                     }
 
-                    return res.render('user-login', {
+                    return res.render('users/user-login', {
                         errors: {
                             password: {
                                 msg: 'La contraseña no coincide'
@@ -87,7 +87,7 @@ const pruebaUserController = {
 
                 } else {
 
-                    return res.render('user-login', {
+                    return res.render('users/user-login', {
                         errors: {
                             email: {
                                 msg: 'Registrate por favor'
@@ -101,7 +101,7 @@ const pruebaUserController = {
             })
     },
     profile: function (req, res) {
-        res.render('user-profile', {
+        res.render('users/user-profile', {
             user: req.session.userLogged
         });
     },
@@ -117,15 +117,15 @@ const pruebaUserController = {
     //* Pedidos, Direcciones, detailsUpdate
     //! Enviar pedidos o compras realizadas por el usuario y mostrarlas en la vista
     pedidos: (req, res) => {
-        res.render('user-pedidos')
+        res.render('users/user-pedidos')
     },
     //! Mostrar la vista direcciones y enviar las direcciones guardadas del usuario
     directions: (req, res) => {
-        res.render('user-directions')
+        res.render('users/user-directions')
     },
     //! Mostrar la vista y el formulario para que el usuario pueda modificar sus datos
     details: (req, res) => {
-        res.render('user-details')
+        res.render('users/user-details')
     },
 
 }

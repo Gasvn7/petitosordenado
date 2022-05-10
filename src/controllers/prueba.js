@@ -23,7 +23,7 @@ const pruebaController = {
             include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
         })
             .then(producto => {
-                res.render('listado', { producto: producto })
+                res.render('products/listado', { producto: producto })
                 console.log({ producto: producto })
             })
     },
@@ -32,7 +32,7 @@ const pruebaController = {
             include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
         })
             .then(producto => {
-                res.render('listado2', { producto: producto })
+                res.render('products/listado2', { producto: producto })
                 console.log({ producto: producto })
             })
     },
@@ -42,7 +42,7 @@ const pruebaController = {
             // Asi se llaman en los modelos (La relaciones que hicimos, los alias. Ej: Brand = brands)
         })
             .then(producto => {
-                res.render('detallito', { producto: producto })
+                res.render('products/detallito', { producto: producto })
             })
     },
     add: function (req, res) {
@@ -53,7 +53,7 @@ const pruebaController = {
         Promise
             .all([brand, category, size])
             .then(([brand, category, size]) => {
-                return res.render(path.resolve(__dirname, '..', 'views', 'creando'), { brand, category, size })
+                return res.render(path.resolve(__dirname, '..', 'views', 'products', 'creando'), { brand, category, size })
             })
             .catch(error => res.send(error))
     },
@@ -93,7 +93,7 @@ const pruebaController = {
             .all([Product, brand, category, size])
             .then(([Product, brand, category, size]) => {
                 Product.release_date = moment(Product.release_date).format('L');
-                return res.render(path.resolve(__dirname, '..', 'views', 'editando'), { Product, brand, category, size })
+                return res.render(path.resolve(__dirname, '..', 'views', 'products', 'editando'), { Product, brand, category, size })
             })
             .catch(error => res.send(error))
     },

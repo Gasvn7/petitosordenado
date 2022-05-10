@@ -1,8 +1,8 @@
 <head>
-    <%- include('partials/head', {title: "Editando: " + Product.name }) %>
+    <%- include('../partials/head', {title: "Editando: " + Product.name }) %>
 </head>
 
-<%- include('partials/header') %>
+<%- include('../partials/header') %>
     <main class="main-crud">
         <section class="crud-contanier">
             <form action="/products/editar/<%= Product.id %>?_method=PATCH" method="POST" class="crud-form"
@@ -75,7 +75,7 @@
             </div>
         </section>
     </main>
-    <%- include('partials/footer') %>
-        </body>
+</body>
+<%- include('../partials/footer') %>
 
         </html>

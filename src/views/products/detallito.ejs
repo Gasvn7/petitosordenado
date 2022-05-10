@@ -1,22 +1,22 @@
 <head>
-    <%- include('partials/head', {title: "Producto: " + (product?.name ? product.name : 'Not Found' ) }) %>
+    <%- include('../partials/head', {title: "Producto: " + (producto?.name ? producto.name : 'Not Found' ) }) %>
 </head>
 
-<%- include('partials/header') %>
+<%- include('../partials/header') %>
     <main class="main-products">
         <div class="product-container">
             <div class="description">
-                <img class="product-img" src="/img/pruebas/<%= product.image %>" alt="">
+                <img class="product-img" src="/img/usersImages/<%= producto.image %>" alt="">
                 <div>
                     <h4>CARACTERÍSTICAS</h4>
                     <span>
-                        <%= product.details %>
+                        <%= producto.details %>
                     </span>
                 </div>
             </div>
             <section class="details">
                 <div class="links-chain">
-                    <a href="">Inicio</a>
+                    <a href="/">Inicio</a>
                     <span class="divider">></span>
                     <a href="">PERROS</a>
                     <span class="divider">></span>
@@ -26,9 +26,9 @@
                 </div>
                 <div class="store">
                     <h2>
-                        <%= product.name %>
+                        <%= producto.name %>
                     </h2>
-                    <h3>$<%= product.price %>
+                    <h3>$<%= producto.price %>
                     </h3>
                     <div class="cuotas">
                         <i class='bx bx-credit-card'></i>
@@ -68,9 +68,9 @@
                     </form><br>
                     <!--MEDIOS DE ENVIO-->
                     <div class="crud-buttons">
-                        <a href="/products/edit/<%= product.id %>"><button class="btn-crud">Editar
+                        <a href="/products/editar/<%= producto.id %>"><button class="btn-crud">Editar
                                 Producto</button></a>
-                        <form action="/products/delete/<%= product.id %>" method="POST">
+                        <form action="/products/destruir/<%= producto.id %>?_method=DELETE" method="POST">
                             <button class="btn-crud" type="submit">Eliminar Producto</button>
                         </form>
                     </div>
@@ -78,7 +78,7 @@
             </section>
         </div>
     </main>
-    <%- include('partials/footer') %>
-        </body>
+</body>
+<%- include('../partials/footer') %>
 
         </html>

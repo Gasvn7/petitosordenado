@@ -80,10 +80,6 @@
 /* Botones fin*/
 
 /*ACÁ EMPIEZA EL LISTADO2*/
-body {
-  background-color: #fbc0e1d2;
-}
-
 .customers {
   display: flex;
   flex-wrap: wrap;
