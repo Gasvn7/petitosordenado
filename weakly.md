@@ -42,3 +42,8 @@ Proyecto integrador equipo 6 - Digital House
 - Terminamos punto 8 del Sprint6 (CRUD). Errores de creación de productos solucionados. Crear, editar, eliminar y detalles terminados.
 - Damos por terminado Sprint6.
 - (Opcional) Añadir archivo .sql con código para llenar las tablas.
+## Lunes 09/05
+- Realizamos el punto 6 (opcional) del Sprint6 (Script de datos). Rellenamos las tablas de Brands, Categories, Sizes, Products y Users.
+- Solucionamos error en el middleware de userLoggedMiddleware.
+- Damos por terminado el Sprint6.
+- Queda pendiente organizar la carpeta Views (users y products).

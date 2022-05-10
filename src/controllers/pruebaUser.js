@@ -26,7 +26,6 @@ const pruebaUserController = {
         })
             .then(user => {
                 if (user != null) {
-                    console.log('NO SE CREA EL USUARIO')
                     return res.render('user-register', {
                         errors: {
                             email: {
@@ -36,19 +35,17 @@ const pruebaUserController = {
                         oldData: req.body
                     })
                 } else {
-                    console.log('SE CREA EL USUARIO')
                     db.User
                         .create(
                             {
                                 first_name: req.body.first_name,
                                 last_name: req.body.last_name,
                                 email: req.body.email,
-                                password: req.body.password /* bcryptjs.hashSync(req.body.password, 10) */,
+                                password: bcryptjs.hashSync(req.body.password, 10),
                                 image: req.files[0] != undefined ? req.files[0].filename : 'no-image',
                             }
                         )
                         .then(() => {
-                            console.log('SE CREÓ AAAAAAA')
                             return res.redirect('/')
                         })
                         .catch(error => res.send(error));
@@ -66,9 +63,7 @@ const pruebaUserController = {
         })
             .then(user => {
                 if (user != null) {
-                    console.log(user.password)
                     if (user.password == req.body.password) {
-                        console.log('SE LOGEÓ')
                         let remember = req.body.remember_user;
                         if (remember) {
                             res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 60 })
@@ -84,8 +79,6 @@ const pruebaUserController = {
                         }
                     })
                 } else {
-                    console.log(user)
-                    console.log('NO SE LOGEÓ')
                     return res.render('user-login', {
                         errors: {
                             email: {

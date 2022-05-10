@@ -49,19 +49,23 @@ const pruebaController = {
             .catch(error => res.send(error))
     },
     crear: function (req, res) {
-        db.Product
-            .create(
-                {
-                    name: req.body.name,
-                    price: req.body.price,
-                    size_id: req.body.size,
-                    quantity: req.body.stock,
-                    category_id: req.body.category,
-                    brand_id: req.body.brand,
-                    image: req.files[0].filename,
-                    details: req.body.details
-                }
-            )
+        // Nombre de Brand - Unico
+        db.Brand.findOne({ where: { brand: req.body.brand } })
+            .then(data => {
+                db.Product
+                    .create(
+                        {
+                            name: req.body.name,
+                            price: req.body.price,
+                            size_id: req.body.size,
+                            quantity: req.body.stock,
+                            category_id: req.body.category,
+                            brand_id: data.id,
+                            image: req.files[0].filename,
+                            details: req.body.details
+                        }
+                    )
+            })
             .then(() => {
                 return res.redirect('/')
             })
