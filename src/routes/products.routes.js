@@ -17,6 +17,7 @@ router.post('/', uploadFile.any(), pruebaController.crear);
 
 //* Listado de productos - VISTA
 router.get('/listado', pruebaController.listadodeproductos);
+router.get('/listado2', pruebaController.listadodeproductos2);
 
 //* Editar producto - VISTA
 router.get('/editar/:id', pruebaController.editar);
@@ -28,7 +29,7 @@ router.patch('/editar/:id', uploadFile.any(), pruebaController.actualizar);
 router.delete('/destruir/:id', pruebaController.destruir);
 
 //* Detalle de producto - VISTA
-router.get('/prueba/:id', pruebaController.detallito);
+router.get('/detalle/:id', pruebaController.detallito);
 //! CRUD db
 
 

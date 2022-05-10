@@ -16,11 +16,13 @@
                 </div>
                 <div class="crud crud-sizes">
                     <h3>Talle</h3>
-                    <select name="size" id="size">
-                        <option value="4"></option>
-                        <option value="1">S</option>
-                        <option value="2">M</option>
-                        <option value="3">L</option>
+                    <select name="size" id="size" required>
+                        <option></option>
+                        <% size.forEach(size=> { %>
+                            <option value="<%= size.id %>">
+                                <%= size.size %>
+                            </option>
+                            <% }); %>
                     </select>
                 </div>
                 <div class="crud crud-stock">
@@ -28,21 +30,25 @@
                     <input type="text" id="stock" name="stock" placeholder="50">
                 </div>
                 <div class="crud crud-categories">
-                    <h3>Categoria</h3>
-                    <select name="category" id="category">
-                        <option value="5"></option>
-                        <option value="1">Perros Adultos</option>
-                        <option value="2">Perros Cachorros</option>
-                        <option value="3">Gatos Adultos</option>
-                        <option value="4">Gatos Cachorros</option>
+                    <h3>Categoría</h3>
+                    <select name="category" id="category" required>
+                        <option></option>
+                        <% category.forEach(category=> { %>
+                            <option value="<%= category.id %>">
+                                <%= category.category %>
+                            </option>
+                            <% }); %>
                     </select>
                 </div>
                 <div class="crud crud-brand">
                     <h3>Marca</h3>
-                    <select name="brand" id="brand">
-                        <option value="3"></option>
-                        <option value="1">DogChow</option>
-                        <option value="2">CatChow</option>
+                    <select name="brand" id="brand" required>
+                        <option></option>
+                        <% brand.forEach(brand=> { %>
+                            <option value="<%= brand.id %>">
+                                <%= brand.brand %>
+                            </option>
+                            <% }); %>
                     </select>
                 </div>
                 <div class="crud-image">

@@ -3,65 +3,78 @@
 </head>
 
 <%- include('partials/header') %>
-    <table id="customers">
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Stock</th>
-            <th>Detalles</th>
-            <th>Precio</th>
-            <th>Marca</th>
-            <th>Talles</th>
-            <th>Categoría</th>
-            <th>Acciones</th>
-        </tr>
-
-        <tr>
+    <div class="user-profile-container">
+        <div class="lateral-options">
+            <ul>
+                <li><a href="/users/perfil">Perfil</a></li>
+                <li><a href="/users/pedidos">Pedidos Realizados</a></li>
+                <li><a href="/users/direcciones">Direcciones</a></li>
+                <li><a href="/users/detalles">Detalles de la cuenta</a></li>
+                <li><a href="/users/logout">Cerrar Sesión</a></li>
+            </ul>
+        </div>
+        <div class="customers">
             <% producto.forEach((producto)=>{ %>
-        <tr>
+                <div class="card-wrapper-list">
+                    <div class="content-list">
+                        <p>Nombre:
+                        <h4>
+                            <%= producto.name %>
+                        </h4>
+                        </p>
+                        <p>ID:
+                        <h4>
+                            <%= producto.id %>
+                        </h4>
+                        </p>
+                        <p>Imagen:
+                        <h4><img class="product-img" src="/img/usersImages/<%= producto.image %>"
+                                alt="<%= producto.image%>"></h4>
+                        </p>
+                        <p>Stock:
+                        <h4>
+                            <%= producto.quantity %>
+                        </h4>
+                        </p>
+                        <p>Detalles:
+                        <h4>
+                            <%= producto.details%>
+                        </h4>
+                        </p>
+                        <p>Precio:
+                        <h4>
+                            <%= producto.price%>
+                        </h4>
+                        </p>
+                        <p>Marca:
+                        <h4>
+                            <%= producto.brands.brand%>
+                        </h4>
+                        </p>
 
-            <td class="iddd">
-                <%= producto.id %>
-            </td>
-            <td>
-                <%= producto.name %>
-            </td>
-            <td>
-                <%= producto.quantity %>
-            </td>
-            <td>
-                <%= producto.details%>
-            </td>
-            <td>
-                <%= producto.price%>
-            </td>
-            <td>
-                <%= producto.brands.brand%>
-            </td>
-            <td>
-                <%= producto.sizes.size%>
-            </td>
-            <td>
-                <%= producto.categories.category%>
-            </td>
-            <td>
-                <script src="editar/<%= producto.id %>"></script>
-                <a href="editar/<%= producto.id %>"><button id="botones-listado">Editar</button></a>
-                <form action="/products/destruir/<%= producto.id %>?_method=DELETE" method="POST">
-                    <button type="submit" id="botones-listado">Eliminar</button>
-                </form>
-            </td>
-            <div>
-                <script src="editar/<%= producto.id %>"></script>
-                <a href="editar/<%= producto.id %>"><button id="botones-listado">Editar</button></a>
-                <form action="/products/destruir/<%= producto.id %>?_method=DELETE" method="POST">
-                    <button type="submit" id="botones-listado">Eliminar</button>
-                </form>
-            </div>
-        </tr>
-        <% }) %>
-
-    </table>
+                        <p>Talle:
+                        <h4>
+                            <%= producto.sizes.size%>
+                        </h4>
+                        </p>
+                        <p>Categoría:
+                        <h4>
+                            <%= producto.categories.category%>
+                        </h4>
+                        </p>
+                        <div class="buttons-list">
+                            <script src="editar/<%= producto.id %>"></script>
+                            <a href="detalle/<%= producto.id %>"><button id="botones-listado">Ver</button></a>
+                            <a href="editar/<%= producto.id %>"><button id="botones-listado">Editar</button></a>
+                            <form action="/products/destruir/<%= producto.id %>?_method=DELETE" method="POST">
+                                <button type="submit" id="botones-listado">Eliminar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+        </div>
+    </div>
     <%- include('partials/footer') %>
         </body>
 

@@ -27,6 +27,15 @@ const pruebaController = {
                 console.log({ producto: producto })
             })
     },
+    listadodeproductos2: (req, res) => {
+        db.Product.findAll({
+            include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
+        })
+            .then(producto => {
+                res.render('listado2', { producto: producto })
+                console.log({ producto: producto })
+            })
+    },
     detallito: (req, res) => {
         db.Product.findByPk(req.params.id, {
             include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
@@ -50,22 +59,22 @@ const pruebaController = {
     },
     crear: function (req, res) {
         // Nombre de Brand - Unico
-        db.Brand.findOne({ where: { brand: req.body.brand } })
-            .then(data => {
-                db.Product
-                    .create(
-                        {
-                            name: req.body.name,
-                            price: req.body.price,
-                            size_id: req.body.size,
-                            quantity: req.body.stock,
-                            category_id: req.body.category,
-                            brand_id: data.id,
-                            image: req.files[0].filename,
-                            details: req.body.details
-                        }
-                    )
-            })
+        /* db.Brand.findOne({ where: { brand: req.body.brand } })
+            .then(data => { */
+        db.Product
+            .create(
+                {
+                    name: req.body.name,
+                    price: req.body.price,
+                    quantity: req.body.stock,
+                    size_id: req.body.size,
+                    category_id: req.body.category,
+                    brand_id: req.body.brand,
+                    image: req.files[0] != undefined ? req.files[0].filename : 'no-image',
+                    details: req.body.details
+                }
+            )
+            /*             }) */
             .then(() => {
                 return res.redirect('/')
             })

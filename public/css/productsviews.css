@@ -46,6 +46,9 @@
 /* Botones */
 #botones-listado {
   position: relative;
+  padding: 8px 20px;
+  margin-top: 15px;
+  width: 105px;
   background: none;
   border: solid 1px #121212;
   cursor: pointer;
@@ -75,3 +78,62 @@
 }
 
 /* Botones fin*/
+
+/*ACÁ EMPIEZA EL LISTADO2*/
+body {
+  background-color: #fbc0e1d2;
+}
+
+.customers {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 45px;
+  justify-content: center;
+  gap: 45px;
+}
+
+.customers .card-wrapper-list {
+  position: relative;
+  display: grid;
+  grid-column: 3;
+  grid-row: 3;
+  place-items: center;
+  text-align: center;
+  z-index: 1;
+  width: 450px;
+  /* TOCAR ESTO AAA*/
+  min-height: 800px;
+  max-height: 1000px;
+  /* TOCAR ESTO AAA*/
+  box-shadow: 0px 0px 10px 1px rgb(0 0 0 / 50%);
+  border-radius: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(5px);
+  overflow: hidden;
+  text-align: left;
+}
+
+.customers .card-wrapper-list .buttons-list {
+  text-align: center;
+}
+
+.customers .card-wrapper-list .content-list {
+  max-width: 400px;
+}
+
+.customers .card-wrapper-list .content-list h3 {
+  font-size: 1.8em;
+  color: rgb(0, 0, 0);
+}
+
+.customers .card-wrapper-list .content-list p {
+  font-size: 1em;
+  color: rgb(0, 0, 0);
+  font-weight: 300;
+}
+
+.customers .card-wrapper-list .content-list img {
+  max-width: 400px;
+}
