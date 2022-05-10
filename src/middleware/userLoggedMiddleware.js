@@ -9,7 +9,7 @@ function userLoggedMiddleware(req, res, next) {
     }
 
     let emailInCookie = req.cookies.userEmail;
-    /* DataBase */
+
     db.User.findAll().then((users) => {
         let userFromCookie = users.find((i) => i.email == emailInCookie);
         if (userFromCookie) {

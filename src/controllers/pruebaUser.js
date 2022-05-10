@@ -62,15 +62,21 @@ const pruebaUserController = {
             where: { email: req.body.email }
         })
             .then(user => {
+                let remember = req.body.remember_user;
+
                 if (user != null) {
-                    if (user.password == req.body.password) {
-                        let remember = req.body.remember_user;
+
+                    let passApproved = bcryptjs.compareSync(req.body.password, user.password);
+
+                    if (passApproved) {
+
                         if (remember) {
                             res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 60 })
                         }
                         req.session.userLogged = user;
                         return res.redirect('/')
                     }
+
                     return res.render('user-login', {
                         errors: {
                             password: {
@@ -78,7 +84,9 @@ const pruebaUserController = {
                             }
                         }
                     })
+
                 } else {
+
                     return res.render('user-login', {
                         errors: {
                             email: {

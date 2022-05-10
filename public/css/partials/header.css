@@ -128,7 +128,12 @@ header {
 }
 
 /*FIN HEADER*/
+
 /*NAV BAR*/
+.nav-bar-inter {
+    background-color: #fbc0e1d2;
+}
+
 .nav-bar {
     display: none;
     position: relative;
@@ -158,6 +163,11 @@ header {
     margin-right: 35px;
     padding: 17px 0;
     list-style: none;
+}
+
+.nav-baritems:hover {
+    background-color: #fbc0e181;
+    border-radius: 5px;
 }
 
 .nav-baritems a {

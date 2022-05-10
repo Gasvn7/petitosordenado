@@ -45,9 +45,9 @@
                 <%= produc.category%>
             </td>
             <td>
-                <script src="edit/<%= produc.id %>"></script>
-                <a href="edit/<%= produc.id %>"><button>Editar</button></a>
-                <form action="/products/list/delete/<%= produc.id %>?_method=DELETE" method="POST">
+                <script src="editar/<%= produc.id %>"></script>
+                <a href="editar/<%= produc.id %>"><button>Editar</button></a>
+                <form action="/products/listado/destruir/<%= produc.id %>?_method=DELETE" method="POST">
                     <button class="btn-crud" type="submit">Eliminar</button>
                 </form>
             </td>
