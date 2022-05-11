@@ -19,8 +19,7 @@ const usersController = {
                 oldData: req.body
             })
         }
-
-
+        //* Traer todos los usuarios, si no hay usuarios al primer registrado agregarle userRole = Admin
         db.User.findOne({
             where: { email: req.body.email }
         })
@@ -63,20 +62,15 @@ const usersController = {
         })
             .then(user => {
                 let remember = req.body.remember_user;
-
                 if (user != null) {
-
                     let passApproved = bcryptjs.compareSync(req.body.password, user.password);
-
                     if (passApproved) {
-
                         if (remember) {
                             res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60) * 60 })
                         }
                         req.session.userLogged = user;
                         return res.redirect('/')
                     }
-
                     return res.render('users/user-login', {
                         errors: {
                             password: {
@@ -84,16 +78,11 @@ const usersController = {
                             }
                         }
                     })
-
                 } else {
-
                     return res.render('users/user-login', {
                         errors: {
                             email: {
-                                msg: 'Registrate por favor'
-                            },
-                            password: {
-                                msg: 'Ingresa una contraseña válida'
+                                msg: 'Regístrate'
                             }
                         }
                     })

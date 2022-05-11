@@ -67,18 +67,21 @@
                         <input type="tel" name="" id=""><br>
                     </form><br>
                     <!--MEDIOS DE ENVIO-->
-                    <div class="crud-buttons">
-                        <a href="/products/editar/<%= producto.id %>"><button class="btn-crud">Editar
-                                Producto</button></a>
-                        <form action="/products/destruir/<%= producto.id %>?_method=DELETE" method="POST">
-                            <button class="btn-crud" type="submit">Eliminar Producto</button>
-                        </form>
-                    </div>
+                    <% if (locals.isLogged) { %>
+                        <div class="crud-buttons">
+                            <a href="/products/editar/<%= producto.id %>"><button class="btn-crud">Editar
+                                    Producto</button></a>
+                            <form action="/products/destruir/<%= producto.id %>?_method=DELETE" method="POST">
+                                <button class="btn-crud" type="submit">Eliminar Producto</button>
+                            </form>
+                        </div>
+                        <% } %>
+
                 </div>
             </section>
         </div>
     </main>
-</body>
-<%- include('../partials/footer') %>
+    </body>
+    <%- include('../partials/footer') %>
 
         </html>
