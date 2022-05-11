@@ -3,7 +3,7 @@ const bcryptjs = require('bcryptjs')
 const { validationResult } = require('express-validator');
 
 
-const pruebaUserController = {
+const usersController = {
 
     register: (req, res) => {
         res.render('users/user-register');
@@ -130,4 +130,4 @@ const pruebaUserController = {
 
 }
 
-module.exports = pruebaUserController;
+module.exports = usersController;

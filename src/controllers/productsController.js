@@ -5,7 +5,7 @@ const { Op } = require("sequelize");
 const moment = require('moment');
 
 
-const pruebaController = {
+const productsController = {
     mostrar: (req, res) => {
         let Producto = db.Product.findAll({
             include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
@@ -130,4 +130,4 @@ const pruebaController = {
     }
 };
 
-module.exports = pruebaController;
+module.exports = productsController;
