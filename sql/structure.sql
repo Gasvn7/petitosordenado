@@ -1,8 +1,3 @@
--- -----------------------------------------------------
--- Schema petitos
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `petitos` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `petitos` ;
 
 -- -----------------------------------------------------
 -- Table `petitos`.`brands`
@@ -18,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `petitos`.`brands` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -35,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `petitos`.`categories` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 19
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -58,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `petitos`.`users` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -79,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `petitos`.`orders` (
     REFERENCES `petitos`.`users` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -96,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `petitos`.`sizes` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -132,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `petitos`.`products` (
 ENGINE = InnoDB
 AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
 
 
 -- -----------------------------------------------------
@@ -159,4 +154,4 @@ CREATE TABLE IF NOT EXISTS `petitos`.`lineorder` (
     REFERENCES `petitos`.`products` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+COLLATE = utf8mb4_general_ci;
