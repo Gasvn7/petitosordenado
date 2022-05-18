@@ -7,6 +7,7 @@ const productsController = require('../controllers/productsController.js')
 const uploadFile = require('../middleware/multerMiddleware')
 // Para verificar redirigir al login si no inició sesión
 const authMiddleware = require('../middleware/authMiddleware')
+const { Creacion } = require('../middleware/validation');
 
 //! CRUD db
 router.get('/', productsController.mostrar); //? Devuelve un JSON
@@ -15,7 +16,7 @@ router.get('/', productsController.mostrar); //? Devuelve un JSON
 router.get('/crear', authMiddleware, productsController.add);
 
 //* Creación de producto - POST
-router.post('/', uploadFile.any(), productsController.crear);
+router.post('/', uploadFile.any(), Creacion ,productsController.crear);
 
 //* Listado de productos - VISTA
 router.get('/listado', productsController.listadodeproductos);

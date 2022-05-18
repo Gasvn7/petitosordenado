@@ -6,7 +6,7 @@ Proyecto integrador equipo 6 - Digital House
 #### Retrospectiva
 
 ### 1. Comenzar a hacer
-### - Comunicarnos
+### - Comunicarnos más
 ### - Interactuar
 
 ### 2. Hacer más

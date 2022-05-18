@@ -2,8 +2,7 @@ const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
-const moment = require('moment');
-
+const { validationResult } = require('express-validator');
 
 const productsController = {
     mostrar: (req, res) => {
@@ -61,24 +60,56 @@ const productsController = {
         // Nombre de Brand - Unico
         /* db.Brand.findOne({ where: { brand: req.body.brand } })
             .then(data => { */
-        db.Product
-            .create(
-                {
-                    name: req.body.name,
-                    price: req.body.price,
-                    quantity: req.body.stock,
-                    size_id: req.body.size,
-                    category_id: req.body.category,
-                    brand_id: req.body.brand,
-                    image: req.files[0] != undefined ? req.files[0].filename : 'no-image',
-                    details: req.body.details
+            const resultValidation = validationResult(req);
+
+            if (resultValidation.errors.length > 0) {
+                return res.render('creando', {
+                    errors: resultValidation.mapped(),
+                    oldData: req.body
+                })
+            }
+            
+            let name = req.body.name;
+            let details = req.body.details;
+            
+            if(name != null && name.length >= 5){
+                if(details != null && details.length >= 20){
+                    db.Product
+                            .create(
+                                {
+                                    name: req.body.name,
+                                    price: req.body.price,
+                                    quantity: req.body.stock,
+                                    size_id: req.body.size,
+                                    category_id: req.body.category,
+                                    brand_id: req.body.brand,
+                                    image: req.files[0] != undefined ? req.files[0].filename : 'no-image',
+                                    details: req.body.details
+                                }
+                            )
+                            .then(() => {
+                                return res.redirect('/')
+                            })
+                            .catch(error => res.send(error));
                 }
-            )
-            /*             }) */
-            .then(() => {
-                return res.redirect('/')
+                return res.render('creando', {
+                    errors: {
+                        details: {
+                            msg: 'La descripción debe contener al menos 20 caracteres'
+                        }
+                    },
+                    oldData: req.body
+                })
+            }
+            return res.render('creando', {
+                errors: {
+                    name: {
+                        msg: 'Ingrese un nombre valido que tenga más de 5 caracteres'
+                    }
+                },
+                oldData: req.body
             })
-            .catch(error => res.send(error));
+        
     },
     editar: function (req, res) {
         let productId = req.params.id;
