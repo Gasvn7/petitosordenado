@@ -1,6 +1,5 @@
 window.addEventListener('load', (e) => {
     const form = document.querySelector('.crud-form');
-    const submit = document.querySelector('.submit');
 
     form.name.focus();
     form.addEventListener('submit', e=>{
@@ -31,6 +30,4 @@ window.addEventListener('load', (e) => {
         }
 
     })
-
-
 }) 
