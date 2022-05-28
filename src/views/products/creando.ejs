@@ -6,49 +6,61 @@
         <section class="crud-contanier">
             <form action="/products" method="POST" class="crud-form" enctype="multipart/form-data">
                 <h1>PRODUCTO NUEVO</h1>
+                <ul class="errors"></ul>
                 <div class="crud crud-name">
                     <h3>Nombre</h3>
-                    <input type="text" id="name" name="name" placeholder="Tostadas Gatunixs">
+                    <input type="text" id="name" name="name"
+                        class="<%= locals.errors && errors.name ? 'is-invalid' : null %> ">
+                    <% if (locals.errors && errors.name) { %>
+                        <div class="text-danger">
+                            <%= errors.name.msg %>
+                        </div>
+                        <% } %>
                 </div>
                 <div class="crud crud-prices">
                     <h3>Precio</h3>
-                    <input type="text" id="price" name="price" placeholder="$500">
+                    <input type="text" id="price" name="price"
+                        class="<%= locals.errors && errors.price ? 'is-invalid' : null %> ">
+                    <% if (locals.errors && errors.price) { %>
+                        <div class="text-danger">
+                            <%= errors.price.msg %>
+                        </div>
+                        <% } %>
                 </div>
                 <div class="crud crud-sizes">
                     <h3>Talle</h3>
-                    <select name="size" id="size" required>
+                    <select name="size" id="size" class="<%= locals.errors && errors.size ? 'is-invalid' : null %> ">
                         <option></option>
-                        <% size.forEach(size=> { %>
-                            <option value="<%= size.id %>">
-                                <%= size.size %>
-                            </option>
-                            <% }); %>
+
                     </select>
+                    <% if (locals.errors && errors.size) { %>
+                        <div class="text-danger">
+                            <%= errors.size.msg %>
+                        </div>
+                        <% } %>
                 </div>
                 <div class="crud crud-stock">
                     <h3>Stock</h3>
-                    <input type="text" id="stock" name="stock" placeholder="50">
+                    <input type="text" id="stock" name="stock"
+                        class="<%= locals.errors && errors.stock ? 'is-invalid' : null %> ">
+                    <% if (locals.errors && errors.stock) { %>
+                        <div class="text-danger">
+                            <%= errors.stock.msg %>
+                        </div>
+                        <% } %>
                 </div>
                 <div class="crud crud-categories">
                     <h3>Categoría</h3>
-                    <select name="category" id="category" required>
+                    <select name="category" id="category">
                         <option></option>
-                        <% category.forEach(category=> { %>
-                            <option value="<%= category.id %>">
-                                <%= category.category %>
-                            </option>
-                            <% }); %>
+
                     </select>
                 </div>
                 <div class="crud crud-brand">
                     <h3>Marca</h3>
-                    <select name="brand" id="brand" required>
+                    <select name="brand" id="brand">
                         <option></option>
-                        <% brand.forEach(brand=> { %>
-                            <option value="<%= brand.id %>">
-                                <%= brand.brand %>
-                            </option>
-                            <% }); %>
+
                     </select>
                 </div>
                 <div class="crud-image">
@@ -57,9 +69,13 @@
                 </div>
                 <div class="crud-details">
                     <h3>Detalles</h3>
-                    <textarea name="details" id="details"
-                        placeholder="Alimento para gatos hecho a base de carbón con metanol" cols="30"
-                        rows="5"></textarea>
+                    <textarea name="details" id="details" cols="30" rows="5"
+                        class="<%= locals.errors && errors.stock ? 'is-invalid' : null %> "></textarea>
+                    <% if (locals.errors && errors.details) { %>
+                        <div class="text-danger">
+                            <%= errors.details.msg %>
+                        </div>
+                        <% } %>
                 </div>
                 <div class="crud-buttons">
                     <button class="btn-crud" type="submit">Crear Producto</button>
@@ -68,6 +84,7 @@
             </form>
         </section>
     </main>
+    <script src='../middleware/validationsFront.js'></script>
     </body>
     <%- include('../partials/footer') %>
 

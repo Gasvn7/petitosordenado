@@ -52,7 +52,7 @@ const productsController = {
         Promise
             .all([brand, category, size])
             .then(([brand, category, size]) => {
-                return res.render(path.resolve(__dirname, '..', 'views', 'products', 'creando'), { brand, category, size })
+                return res.render('products/creando', { brand, category, size })
             })
             .catch(error => res.send(error))
     },
@@ -63,7 +63,7 @@ const productsController = {
             const resultValidation = validationResult(req);
 
             if (resultValidation.errors.length > 0) {
-                return res.render('creando', {
+                return res.render('products/creando', {
                     errors: resultValidation.mapped(),
                     oldData: req.body
                 })
@@ -92,7 +92,7 @@ const productsController = {
                             })
                             .catch(error => res.send(error));
                 }
-                return res.render('creando', {
+                return res.render('products/creando', {
                     errors: {
                         details: {
                             msg: 'La descripción debe contener al menos 20 caracteres'
@@ -101,7 +101,7 @@ const productsController = {
                     oldData: req.body
                 })
             }
-            return res.render('creando', {
+            return res.render('products/creando', {
                 errors: {
                     name: {
                         msg: 'Ingrese un nombre valido que tenga más de 5 caracteres'
