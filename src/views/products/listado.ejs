@@ -46,18 +46,15 @@
             </td>
             <td>
                 <script src="editar/<%= producto.id %>"></script>
-                <a href="editar/<%= producto.id %>"><button id="botones-listado">Editar</button></a>
-                <form action="/products/destruir/<%= producto.id %>?_method=DELETE" method="POST">
-                    <button type="submit" id="botones-listado">Eliminar</button>
-                </form>
+                <a href="detalle/<%= producto.id %>"><button id="botones-listado">Ver</button></a>
+                <% if (locals.isLogged) { %>
+                    <a href="editar/<%= producto.id %>"><button id="botones-listado">Editar</button></a>
+                    <form action="/products/destruir/<%= producto.id %>?_method=DELETE" method="POST">
+                        <button type="submit" id="botones-listado">Eliminar</button>
+                    </form>
+                    <% } %>
             </td>
-            <div>
-                <script src="editar/<%= producto.id %>"></script>
-                <a href="editar/<%= producto.id %>"><button id="botones-listado">Editar</button></a>
-                <form action="/products/destruir/<%= producto.id %>?_method=DELETE" method="POST">
-                    <button type="submit" id="botones-listado">Eliminar</button>
-                </form>
-            </div>
+
         </tr>
         <% }) %>
 

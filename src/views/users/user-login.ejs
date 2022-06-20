@@ -13,37 +13,44 @@
 
         <label for="email">Correo electrónico</label>
         <input class="input" type="email" name="email">
-        <% if (locals.errors && errors.email) { %>
-          <div class="text-danger">
+        <div class="text-danger-email">
+          <% if (locals.errors && errors.email) { %>
             <a href="/users/register">
               <%= errors.email.msg %>
             </a>
-          </div>
-          <% } %>
-            <label for="password">Contraseña</label>
-            <input class="input" type="password" name="password" value="">
-            <% if (locals.errors && errors.password) { %>
-              <div class="text-danger">
-                <span>
-                  <%= errors.password.msg %>
-                </span>
-              </div>
-              <% } %>
+            <% } %>
+        </div>
+        <label for="password">Contraseña</label>
+        <input class="input" type="password" name="password" value="">
+        <div class="text-danger-password">
+          <% if (locals.errors && errors.password) { %>
+            <span>
+              <%= errors.password.msg %>
+            </span>
+            <% } %>
+        </div>
 
-                <label for="checkbox">
-                  <input type="checkbox" class="checkbox" name="remember_user">Recordar mi usuario
-                </label>
+        <label for="checkbox">
+          <input type="checkbox" class="checkbox" name="remember_user">Recordar mi usuario
+        </label>
 
-
-                <div class="clearfix">
-                  <button class="login-button" type="submit">Ingresar</button>
-                  <a href="/users/register" class="register-button">
-                    Registrarme
-                  </a>
-                </div>
+        <div class="text-danger-text">
+          <% if (locals.errors && errors.text) { %>
+            <span>
+              <%= errors.text.msg %>
+            </span>
+            <% } %>
+        </div>
+        <div class="clearfix">
+          <button class="login-button" type="submit">Ingresar</button>
+          <a href="/users/register" class="register-button">
+            Registrarme
+          </a>
+        </div>
       </div>
     </form>
   </main>
+<!--   <script src="/js/validationsLogin.js"></script> -->
   </body>
   <%- include('../partials/footer') %>
 

@@ -1,16 +1,16 @@
 <head>
-    <%- include('../partials/head', {title: "Producto: " + (producto?.name ? producto.name : 'Not Found' ) }) %>
+    <%- include('../partials/head', {title: "Producto: " + (Product?.name ? Product.name : 'Not Found' ) }) %>
 </head>
 
 <%- include('../partials/header') %>
     <main class="main-products">
         <div class="product-container">
             <div class="description">
-                <img class="product-img" src="/img/usersImages/<%= producto.image %>" alt="">
+                <img class="product-img" src="/img/usersImages/<%= Product.image %>" alt="">
                 <div>
                     <h4>CARACTERÍSTICAS</h4>
                     <span>
-                        <%= producto.details %>
+                        <%= Product.details %>
                     </span>
                 </div>
             </div>
@@ -26,9 +26,9 @@
                 </div>
                 <div class="store">
                     <h2>
-                        <%= producto.name %>
+                        <%= Product.name %>
                     </h2>
-                    <h3>$<%= producto.price %>
+                    <h3>$<%= Product.price %>
                     </h3>
                     <div class="cuotas">
                         <i class='bx bx-credit-card'></i>
@@ -36,14 +36,15 @@
                     </div>
                     <a class="details-cuotas" href="/cuotes">Ver más detalles</a>
                     <form action="" class="form">
+
                         <label for="size">Talle</label><br>
-                        <select name="size" id="size">
-                            <option value="Empty"></option>
-                            <option value="S">S</option>
-                            <option value="SM">SM</option>
-                            <option value="M">M</option>
-                            <option value="ML">ML</option>
-                            <option value="L">L</option>
+                        <select name="size" id="size" required>
+                            <% size.forEach(size=> { %>
+                                <option value="<%= size.id %>" <% if (Product.size_id==size.id) { %>
+                                    <%= 'selected' %>
+                                        <% }; %>><%= size.size %>
+                                </option>
+                                <% }); %>
                         </select>
                     </form>
                     <a class="guide-sizes" href="/guide-sizes">Guía de talles</a>
@@ -69,9 +70,9 @@
                     <!--MEDIOS DE ENVIO-->
                     <% if (locals.isLogged) { %>
                         <div class="crud-buttons">
-                            <a href="/products/editar/<%= producto.id %>"><button class="btn-crud">Editar
+                            <a href="/products/editar/<%= Product.id %>"><button class="btn-crud">Editar
                                     Producto</button></a>
-                            <form action="/products/destruir/<%= producto.id %>?_method=DELETE" method="POST">
+                            <form action="/products/destruir/<%= Product.id %>?_method=DELETE" method="POST">
                                 <button class="btn-crud" type="submit">Eliminar Producto</button>
                             </form>
                         </div>

@@ -1,34 +1,33 @@
 <head>
     <%- include('../partials/head', {title: "Editando: " + Product.name }) %>
 </head>
-
 <%- include('../partials/header') %>
     <main class="main-crud">
         <section class="crud-contanier">
             <form action="/products/editar/<%= Product.id %>?_method=PATCH" method="POST" class="crud-form"
                 enctype="multipart/form-data">
-                <h1>PRODUCTO NUEVO</h1>
+                <h1>Editando: <%- Product.name %>
+                </h1>
                 <div class="crud crud-name">
                     <h3>Nombre</h3>
                     <input type="text" id="name" name="name"
-                        class="<%= locals.errors && errors.details ? 'is-invalid' : null %> "
-                        value="<%= Product.name %>">
-                    <% if (locals.errors && errors.name) { %>
-                        <div class="text-danger">
+                        class="<%= locals.errors && errors.name ? 'is-invalid' : null %> " value="<%= Product.name %>">
+                    <div class="text-danger">
+                        <% if (locals.errors && errors.name) { %>
                             <%= errors.name.msg %>
-                        </div>
-                     <% } %>
+                                <% } %>
+                    </div>
                 </div>
                 <div class="crud crud-prices">
                     <h3>Precio</h3>
-                    <input type="number" id="price" name="price"
-                        class="<%= locals.errors && errors.details ? 'is-invalid' : null %> "
+                    <input type="text" id="price" name="price"
+                        class="<%= locals.errors && errors.price ? 'is-invalid' : null %> "
                         value="<%= Product.price %>">
-                    <% if (locals.errors && errors.price) { %>
-                        <div class="text-danger">
+                    <div class="text-danger">
+                        <% if (locals.errors && errors.price) { %>
                             <%= errors.price.msg %>
-                        </div>
-                        <% } %>
+                                <% } %>
+                    </div>
                 </div>
                 <div class="crud crud-sizes">
                     <h3>Talle</h3>
@@ -44,13 +43,13 @@
                 <div class="crud crud-stock">
                     <h3>Stock</h3>
                     <input type="text" id="stock" name="stock"
-                        class="<%= locals.errors && errors.details ? 'is-invalid' : null %> "
+                        class="<%= locals.errors && errors.stock ? 'is-invalid' : null %> "
                         value="<%= Product.quantity %>">
-                    <% if (locals.errors && errors.stock) { %>
-                        <div class="text-danger">
+                    <div class="text-danger">
+                        <% if (locals.errors && errors.stock) { %>
                             <%= errors.stock.msg %>
-                        </div>
-                        <% } %>
+                                <% } %>
+                    </div>
                 </div>
                 <div class="crud crud-categories">
                     <h3>Categoría</h3>
@@ -84,11 +83,16 @@
                     <textarea name="details" id="details"
                         class="<%= locals.errors && errors.details ? 'is-invalid' : null %> " cols="30"
                         rows="5"><%= Product.details %></textarea>
-                    <% if (locals.errors && errors.details) { %>
-                        <div class="text-danger">
+                    <div class="text-danger">
+                        <% if (locals.errors && errors.details) { %>
                             <%= errors.details.msg %>
-                        </div>
-                        <% } %>
+                                <% } %>
+                    </div>
+                </div>
+                <div class="text-danger crud-text">
+                    <% if (locals.errors && errors.text) { %>
+                        <%= errors.text.msg %>
+                            <% } %>
                 </div>
                 <div class="crud-buttons">
                     <button type="submit">Guardar cambios</button>
@@ -103,6 +107,7 @@
             </div>
         </section>
     </main>
+    <script src="/js/validationsEditar.js"></script>
     </body>
     <%- include('../partials/footer') %>
 

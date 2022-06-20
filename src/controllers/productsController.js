@@ -20,7 +20,6 @@ const productsController = {
         })
             .then(producto => {
                 res.render('products/listado', { producto: producto })
-                console.log({ producto: producto })
             })
     },
     listadodeproductos2: (req, res) => {
@@ -29,17 +28,24 @@ const productsController = {
         })
             .then(producto => {
                 res.render('products/listado2', { producto: producto })
-                console.log({ producto: producto })
             })
     },
     detallito: (req, res) => {
-        db.Product.findByPk(req.params.id, {
+        let productId = req.params.id;
+        let Product = db.Product.findByPk(productId, {
             include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
             // Asi se llaman en los modelos (La relaciones que hicimos, los alias. Ej: Brand = brands)
-        })
-            .then(producto => {
-                res.render('products/detallito', { producto: producto })
+        });
+        let brand = db.Brand.findAll();
+        let category = db.Category.findAll();
+        let size = db.Size.findAll();
+
+        Promise
+            .all([Product, brand, category, size])
+            .then(([Product, brand, category, size]) => {
+                return res.render('products/detallito', { Product, brand, category, size })
             })
+            .catch(error => res.send(error))
     },
     add: function (req, res) {
         let brand = db.Brand.findAll();
@@ -124,7 +130,6 @@ const productsController = {
             .all([Product, brand, category, size])
             .then(([Product, brand, category, size]) => {
                 if (resultValidation.errors.length > 0) {
-                    console.log('Error')
                     return res.render('products/editando', {
                         errors: resultValidation.mapped(),
                         Product,

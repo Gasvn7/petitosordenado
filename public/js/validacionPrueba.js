@@ -1,4 +1,4 @@
-const form = document.querySelector('#formulario')
+/* const form = document.querySelector('#formulario')
 const inputs = document.querySelectorAll('#formulario input');
 
 
@@ -106,3 +106,4 @@ form.addEventListener('submit', (e) => {
 		document.querySelector('#formulario__mensaje').classList.add('formulario__mensaje-activo');
 	}
 })
+ */
