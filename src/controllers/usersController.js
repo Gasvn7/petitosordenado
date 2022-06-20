@@ -22,17 +22,7 @@ const usersController = {
         db.User.findOne({
             where: { email: req.body.email }
         })
-            .then(user => {
-                if (user != null) {
-                    return res.render('users/user-register', {
-                        errors: {
-                            email: {
-                                msg: 'Este email ya está registrado'
-                            }
-                        },
-                        oldData: req.body
-                    })
-                } else {
+            .then(
                     db.User
                         .create(
                             {
@@ -46,9 +36,8 @@ const usersController = {
                         .then(() => {
                             return res.redirect('/')
                         })
-                        .catch(error => res.send(error));
-                }
-            })
+                        .catch(error => res.send(error))
+            )
             .catch(error => res.send(error));
     },
 

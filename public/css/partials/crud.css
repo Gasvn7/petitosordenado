@@ -87,3 +87,8 @@
     cursor: pointer;
     background-color: rgba(0, 122, 122, 0.3);
 }
+
+.crud-buttons span {
+    display:inline-block;
+    
+}

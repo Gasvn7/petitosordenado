@@ -10,21 +10,21 @@
                     <h3>Nombre</h3>
                     <input type="text" id="name" name="name"
                         class="<%= locals.errors && errors.name ? 'is-invalid' : null %> ">
-                    <% if (locals.errors && errors.name) { %>
-                        <div class="text-danger">
+                    <div class="text-danger">
+                        <% if (locals.errors && errors.name) { %>
                             <%= errors.name.msg %>
-                        </div>
-                        <% } %>
+                                <% } %>
+                    </div>
                 </div>
                 <div class="crud crud-prices">
                     <h3>Precio</h3>
                     <input type="text" id="price" name="price"
                         class="<%= locals.errors && errors.price ? 'is-invalid' : null %> ">
-                    <% if (locals.errors && errors.price) { %>
-                        <div class="text-danger">
+                    <div class="text-danger">
+                        <% if (locals.errors && errors.price) { %>
                             <%= errors.price.msg %>
-                        </div>
-                        <% } %>
+                                <% } %>
+                    </div>
                 </div>
                 <div class="crud crud-sizes">
                     <h3>Talle</h3>
@@ -36,21 +36,16 @@
                             </option>
                             <% }); %>
                     </select>
-                    <% if (locals.errors && errors.size) { %>
-                        <div class="text-danger">
-                            <%= errors.size.msg %>
-                        </div>
-                        <% } %>
                 </div>
                 <div class="crud crud-stock">
                     <h3>Stock</h3>
                     <input type="text" id="stock" name="stock"
                         class="<%= locals.errors && errors.stock ? 'is-invalid' : null %> ">
-                    <% if (locals.errors && errors.stock) { %>
-                        <div class="text-danger">
+                    <div class="text-danger">
+                        <% if (locals.errors && errors.stock) { %>
                             <%= errors.stock.msg %>
-                        </div>
-                        <% } %>
+                                <% } %>
+                    </div>
                 </div>
                 <div class="crud crud-categories">
                     <h3>Categoría</h3>
@@ -81,8 +76,19 @@
                 <div class="crud-details">
                     <h3>Detalles</h3>
                     <textarea name="details" id="details"
+                        class="<%= locals.errors && errors.details ? 'is-invalid' : null %> "
                         placeholder="Alimento para gatos hecho a base de carbón con metanol" cols="30"
                         rows="5"></textarea>
+                    <div class="text-danger">
+                        <% if (locals.errors && errors.details) { %>
+                            <%= errors.details.msg %>
+                                <% } %>
+                    </div>
+                </div>
+                <div class="text-danger crud-text">
+                    <% if (locals.errors && errors.text) { %>
+                        <%= errors.text.msg %>
+                            <% } %>
                 </div>
                 <div class="crud-buttons">
                     <button class="btn-crud" type="submit">Crear Producto</button>
@@ -91,7 +97,7 @@
             </form>
         </section>
     </main>
-    <!-- ACÁ VA EL SCRIPT DE VALIDACIONFRONT -->
+    <script src="/js/validationsCrear.js"></script>
     </body>
     <%- include('../partials/footer') %>
 

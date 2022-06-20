@@ -13,13 +13,10 @@ module.exports = {
         check('password')
             .notEmpty().withMessage('Escribí una contraseña'),
     ],
-    Login: [
-
-    ],
     Creacion: [
         check('name')
         .notEmpty().withMessage('Este campo tiene que estar completado')
-        .isLength(min=5).withMessage('Debe tener al menos 5 caracteres'),
+        .isLength(min=5).withMessage('Debe tener entre 5 y 15 caracteres'),
         check('price')
             .notEmpty().withMessage('Este campo tiene que estar completado')
             .isNumeric().withMessage('Solo debe contener números'),
@@ -28,9 +25,8 @@ module.exports = {
             .isNumeric().withMessage('Solo debe contener números'),
         check('details')
         .notEmpty().withMessage('Este campo tiene que estar completado')
-        .isLength(min=20).withMessage('Debe tener al menos 20 caracteres'),
+        .isLength(min=1).withMessage('Este campo debe contener al menos 1 carater'),
     ],
-
     Editando: [
         check('name')
         .notEmpty().withMessage('Este campo tiene que estar completado')
@@ -43,6 +39,6 @@ module.exports = {
             .isNumeric().withMessage('Solo debe contener números'),
         check('details')
         .notEmpty().withMessage('Este campo tiene que estar completado')
-        .isLength(min=20).withMessage('Debe tener al menos 20 caracteres'),
+        .isLength(min=1).withMessage('Este campo debe contener al menos 1 carater'),
     ]
 }

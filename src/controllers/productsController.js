@@ -1,7 +1,4 @@
-const path = require('path');
 const db = require('../database/models');
-const sequelize = db.sequelize;
-const { Op } = require("sequelize");
 const { validationResult } = require('express-validator');
 
 const productsController = {
@@ -61,20 +58,22 @@ const productsController = {
         /* db.Brand.findOne({ where: { brand: req.body.brand } })
             .then(data => { */
             const resultValidation = validationResult(req);
+            
+            let brand = db.Brand.findAll();
+            let category = db.Category.findAll();
+            let size = db.Size.findAll();
 
-            if (resultValidation.errors.length > 0) {
-                return res.render('products/creando', {
-                    errors: resultValidation.mapped(),
-                    oldData: req.body
-                })
-            }
-            
-            let name = req.body.name;
-            let details = req.body.details;
-            
-            if(name != null && name.length >= 5){
-                if(details != null && details.length >= 20){
-                    db.Product
+            Promise.all([brand, category, size])
+                .then(([brand, category, size]) => {
+                    if (resultValidation.errors.length > 0) {
+                        return res.render('products/creando', {
+                            errors: resultValidation.mapped(),
+                            brand,
+                            category,
+                            size
+                        })
+                    } else {
+                        db.Product
                             .create(
                                 {
                                     name: req.body.name,
@@ -91,25 +90,8 @@ const productsController = {
                                 return res.redirect('/')
                             })
                             .catch(error => res.send(error));
-                }
-                return res.render('products/creando', {
-                    errors: {
-                        details: {
-                            msg: 'La descripción debe contener al menos 20 caracteres'
-                        }
-                    },
-                    oldData: req.body
-                })
-            }
-            return res.render('products/creando', {
-                errors: {
-                    name: {
-                        msg: 'Ingrese un nombre valido que tenga más de 5 caracteres'
                     }
-                },
-                oldData: req.body
-            })
-        
+                })  
     },
     editar: function (req, res) {
         let productId = req.params.id;
@@ -123,32 +105,55 @@ const productsController = {
         Promise
             .all([Product, brand, category, size])
             .then(([Product, brand, category, size]) => {
-                Product.release_date = moment(Product.release_date).format('L');
-                return res.render(path.resolve(__dirname, '..', 'views', 'products', 'editando'), { Product, brand, category, size })
+                return res.render(('products/editando'), { Product, brand, category, size })
             })
             .catch(error => res.send(error))
     },
     actualizar: function (req, res) {
+        const resultValidation = validationResult(req);
+            
         let productId = req.params.id;
-        db.Product
-            .update(
-                {
-                    name: req.body.name,
-                    price: req.body.price,
-                    size_id: req.body.size,
-                    quantity: req.body.stock,
-                    category_id: req.body.category,
-                    brand_id: req.body.brand,
-                    image: req.files[0] != undefined ? req.files[0].filename : db.Product.image,
-                    details: req.body.details
-                },
-                {
-                    where: { id: productId }
-                })
-            .then(() => {
-                return res.redirect('/products/listado')
+        let Product = db.Product.findByPk(productId, {
+            include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
+        });
+        let brand = db.Brand.findAll();
+        let category = db.Category.findAll();
+        let size = db.Size.findAll();
+
+        Promise
+            .all([Product, brand, category, size])
+            .then(([Product, brand, category, size]) => {
+                if (resultValidation.errors.length > 0) {
+                    console.log('Error')
+                    return res.render('products/editando', {
+                        errors: resultValidation.mapped(),
+                        Product,
+                        brand, 
+                        category, 
+                        size
+                    })
+                } else {
+                    db.Product
+                        .update(
+                            {
+                                name: req.body.name,
+                                price: req.body.price,
+                                size_id: req.body.size,
+                                quantity: req.body.stock,
+                                category_id: req.body.category,
+                                brand_id: req.body.brand,
+                                image: req.files[0] != undefined ? req.files[0].filename : db.Product.image,
+                                details: req.body.details
+                            },
+                            {
+                                where: { id: productId }
+                            })
+                        .then(() => {
+                            return res.redirect('/products/listado')
+                        })
+                        .catch(error => res.send(error))
+                }
             })
-            .catch(error => res.send(error))
     },
     destruir: function (req, res) {
         let productId = req.params.id;

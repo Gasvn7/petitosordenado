@@ -2,7 +2,7 @@
   <%- include('../partials/head', {title: "Login" }) %>
 </head>
 
-<%- include('../partials/header') %>    
+<%- include('../partials/header') %>
   <!----Formulario-login-->
   <main class=" main-register-login">
     <form action="/users/login" class="form-login" method="POST">
@@ -24,9 +24,9 @@
             <input class="input" type="password" name="password" value="">
             <% if (locals.errors && errors.password) { %>
               <div class="text-danger">
-                <p>
+                <span>
                   <%= errors.password.msg %>
-                </p>
+                </span>
               </div>
               <% } %>
 
@@ -44,7 +44,7 @@
       </div>
     </form>
   </main>
-</body>
-<%- include('../partials/footer') %>
+  </body>
+  <%- include('../partials/footer') %>
 
     </html>
