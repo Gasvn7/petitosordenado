@@ -33,6 +33,10 @@ app.use(methodOverride('_method'));
 //* MIDDLEWARE DE APLICACIÓN
 app.use(userLoggedMiddleware);
 
+//* API ROUTES *//
+const productsAPIRouter = require('./routes/api/products');
+const usersAPIRouter = require('./routes/api/users');
+
 //*ROUTES*//
 const mainRouter = require('./routes/main.routes');
 const productsRouter = require('./routes/products.routes');
@@ -42,6 +46,10 @@ const usersRouter = require('./routes/users.routes');
 app.use('/', mainRouter);
 app.use('/products', productsRouter);
 app.use('/users', usersRouter);
+
+//* Recursos de APIs
+app.use('/api/products',productsAPIRouter);
+app.use('/api/users',usersAPIRouter);
 
 
 // catch 404 and forward to error handler

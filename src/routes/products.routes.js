@@ -10,7 +10,6 @@ const authMiddleware = require('../middleware/authMiddleware')
 const { Creacion, Editando } = require('../middleware/validation');
 
 //! CRUD db
-router.get('/', productsController.mostrar); //? Devuelve un JSON
 
 //* Creación de producto - VISTA
 router.get('/crear', authMiddleware, productsController.add);

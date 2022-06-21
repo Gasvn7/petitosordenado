@@ -8,7 +8,7 @@ const usersController = require('../controllers/usersController.js')
 
 //* MIDDLEWARE *//
 // Para enviar los errores de validación al usuario
-const { Registro, Login } = require('../middleware/validation')
+const { Registro } = require('../middleware/validation')
 
 // Para verificar si ya inicio sesión el usuario
 const guestMiddleware = require('../middleware/guestMiddleware')

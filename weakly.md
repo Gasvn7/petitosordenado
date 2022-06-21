@@ -67,3 +67,7 @@
 ## Martes 17/05
 
 - Revisamos el Sprint7 y le dimos comienzo.
+
+## Lunes 20/06
+
+- Se terminó el Sprint7. Queda pendiente algunas validaciones, las cuales están comentadas (Editar, Registro y Login).
