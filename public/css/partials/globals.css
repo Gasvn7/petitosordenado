@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #fbc0e1d2;
+   /*  background-color: #fbc0e1d2; */
     height: 100vh;
     font-size: var(--text-md);
     width: 100%;

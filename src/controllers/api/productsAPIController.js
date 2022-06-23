@@ -33,18 +33,41 @@ const productsAPIController = {
         Promise
             .all([Product, brand, category, size])
             .then(([Product, brand, category, size]) => {
+                let categoryCount = 0;
+                let brandCount = 0;
+                let sizeCount = 0;
+
+                for(let i = 1; i < products.length; i++){
+                    if (products[i].category_id){
+                        categoryCount += 1;
+                    }
+                    if(products[i].brand_id != 11){
+                        brandCount += 1;
+                    }
+                    if(products[i].size_id != 5){
+                        sizeCount += 1;
+                    }
+                }
+
+                for (let i = 0; i < products.length; i++){
+                    products[i].setDataValue(
+                        'ProductDetail',
+                        'http://localhost:3000/api/products/' + products[i].id
+                    )
+                }
+
                 let respuesta = {
                     meta: {
                         status: 200,
+                        brand: brand,
+                        category: category,
+                        size: size,
                         url: '/api/products/:id'
                     },
                     data: Product,
-                    brand: brand,
-                    category: category,
-                    size: size,
                     image: Product.image
                 }
-                res.json(respuesta)
+                res.status(200).json(respuesta)
             })
             .catch(e => { res.render(e) })
     }
