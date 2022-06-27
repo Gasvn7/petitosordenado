@@ -13,6 +13,14 @@ module.exports = {
         check('password')
             .notEmpty().withMessage('Escribí una contraseña'),
     ],
+    Login: [
+        check('email')
+            .notEmpty().withMessage('Escribí un email').bail()
+            .isEmail().withMessage('Verifica que lo pusiste bien'),
+        check('password')
+            .notEmpty().withMessage('Escribí una contraseña'),
+
+    ],
     Creacion: [
         check('name')
         .notEmpty().withMessage('Este campo tiene que estar completado')

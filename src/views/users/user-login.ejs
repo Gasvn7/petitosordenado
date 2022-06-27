@@ -15,9 +15,9 @@
         <input class="input" type="email" name="email">
         <div class="text-danger-email">
           <% if (locals.errors && errors.email) { %>
-            <a href="/users/register">
+            
               <%= errors.email.msg %>
-            </a>
+           
             <% } %>
         </div>
         <label for="password">Contraseña</label>

@@ -35,8 +35,8 @@
 .btn {
   display: inline-block;
   margin-top: 1rem;
-  background: var(--green);
-  color: red;
+  background:#fcbee1d2;
+  color:var(--main-color);
   padding: .8rem 3rem;
   font-size: 1.7rem;
   text-align: center;
