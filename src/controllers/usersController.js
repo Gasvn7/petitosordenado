@@ -53,7 +53,6 @@ const usersController = {
                 oldData: req.body
             })
         }
-
         db.User.findOne({
             where: { email: req.body.email }
         })
