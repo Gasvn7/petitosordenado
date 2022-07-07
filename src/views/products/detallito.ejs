@@ -35,18 +35,6 @@
                         <span class="cuotes">700 cuotas de $10.002</span><br>
                     </div>
                     <a class="details-cuotas" href="/cuotes">Ver más detalles</a>
-                    <form action="" class="form">
-
-                        <label for="size">Talle</label><br>
-                        <select name="size" id="size" required>
-                            <% size.forEach(size=> { %>
-                                <option value="<%= size.id %>" <% if (Product.size_id==size.id) { %>
-                                    <%= 'selected' %>
-                                        <% }; %>><%= size.size %>
-                                </option>
-                                <% }); %>
-                        </select>
-                    </form>
                     <a class="guide-sizes" href="/guide-sizes">Guía de talles</a>
                     <div class="add-to-cart">
                         <div class="minus-plus">
@@ -54,6 +42,7 @@
                             <span>1</span>
                             <button><i class='bx bx-plus'></i></button>
                         </div>
+
                         <div class="add">
                             <a href="">AGREGAR AL CARRITO</a>
                         </div>
@@ -63,10 +52,6 @@
                         <i class='bx bxs-truck'></i>
                         <span>Medios de envío</span>
                     </div>
-                    <div></div>
-                    <form action=""><br>
-                        <input type="tel" name="" id=""><br>
-                    </form><br>
                     <!--MEDIOS DE ENVIO-->
                     <% if (locals.isLogged) { %>
                         <div class="crud-buttons">

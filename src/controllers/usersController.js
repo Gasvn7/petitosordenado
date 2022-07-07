@@ -45,6 +45,15 @@ const usersController = {
         res.render('users/user-login');
     },
     loginProcess: (req, res) => {
+        const resultValidation = validationResult(req);
+
+        if (resultValidation.errors.length > 0) {
+            return res.render('users/user-login', {
+                errors: resultValidation.mapped(),
+                oldData: req.body
+            })
+        }
+
         db.User.findOne({
             where: { email: req.body.email }
         })
@@ -70,7 +79,7 @@ const usersController = {
                     return res.render('users/user-login', {
                         errors: {
                             email: {
-                                msg: 'Regístrate'
+                                msg: 'Este usuario no esta registrado'
                             }
                         }
                     })

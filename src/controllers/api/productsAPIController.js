@@ -2,74 +2,83 @@ const db = require('../../database/models');
 
 const productsAPIController = {
     list: (req, res) => {
-        let Producto = db.Product.findAll({
-            include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
-        });
-    
-        Promise.all(Producto)
-            .then((productoo) => {
-                let respuesta = {
-                    meta: {
-                        status: 200,
-                        count: productoo.length,
-                        url: '/api/products'
-                    },
-                    products: productoo
-                }
-                res.json(respuesta)
-            })
-            .catch(e => { res.render(e) })
-    },
-    detail: (req, res) => {
-        let productId = req.params.id;
-        let Product = db.Product.findByPk(productId, {
-            include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
-            // Asi se llaman en los modelos (La relaciones que hicimos, los alias. Ej: Brand = brands)
-        });
-        let brand = db.Brand.findAll();
-        let category = db.Category.findAll();
-        let size = db.Size.findAll();
+        db.Product.findAll({
+           /*  include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }] */
+        })
+            .then((product) => {
 
-        Promise
-            .all([Product, brand, category, size])
-            .then(([Product, brand, category, size]) => {
-                let categoryCount = 0;
-                let brandCount = 0;
-                let sizeCount = 0;
-
-                for(let i = 1; i < products.length; i++){
-                    if (products[i].category_id){
+                let categoryCount = 1;
+                for(let i = 1; i < product.length; i++){
+                    if (product[i].category_id != 19){
+                        console.log('Me estoy ejecutando')
+                        console.log(categoryCount)
                         categoryCount += 1;
                     }
-                    if(products[i].brand_id != 11){
+                };
+                
+                let brandCount = 0;
+                for(let i = 1; i < product.length; i++){
+                    if(product[i].brand_id != 11){
                         brandCount += 1;
                     }
-                    if(products[i].size_id != 5){
-                        sizeCount += 1;
+                };
+                
+                let sizeCount = 0;
+                for(let i = 1; i < product.length; i++){
+                    if(product[i].size_id != 5){
+                       sizeCount += 1;
                     }
                 }
 
-                for (let i = 0; i < products.length; i++){
-                    products[i].setDataValue(
+                for (let i = 0; i < product.length; i++){
+                    product[i].setDataValue(
                         'ProductDetail',
-                        'http://localhost:3000/api/products/' + products[i].id
+                        'http://localhost:3500/api/products/' + product[i].id
                     )
                 }
 
                 let respuesta = {
                     meta: {
-                        status: 200,
-                        brand: brand,
-                        category: category,
-                        size: size,
-                        url: '/api/products/:id'
+                        count: product.length,
+                        categoryCount: categoryCount,
+                        brandCount: brandCount,
+                        sizeCount: sizeCount
                     },
-                    data: Product,
-                    image: Product.image
+                    products: product
                 }
                 res.status(200).json(respuesta)
             })
-            .catch(e => { res.render(e) })
+            /* .catch(e => { res.render(e) }) */
+    },
+    detail: (req, res) => {
+        let productId = req.params.id;
+        db.Product.findByPk(productId, {
+            include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
+        })
+            .then((Product) => {
+                
+                if(Product == null){
+
+                    res.status(200).json({
+                       NonExistent: 'El producto no existe en la base de datos'
+                    })
+
+                } else {
+                     Product.setDataValue(
+                        'image',
+                        'http://localhost:3500/api/usersImages/' + Product.image
+                     )
+
+                    let respuesta = {
+                        id: Product.id,
+                        data: Product
+                    }
+
+                    res.status(200).json(respuesta)
+                }
+
+            })
+            /* .catch(e => { res.render(e) }) */
     }
 }
 

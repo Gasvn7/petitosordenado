@@ -15,10 +15,8 @@
         <input class="input" type="email" name="email">
         <div class="text-danger-email">
           <% if (locals.errors && errors.email) { %>
-            <a href="/users/register">
-              <%= errors.email.msg %>
-            </a>
-            <% } %>
+            <%= errors.email.msg %>
+              <% } %>
         </div>
         <label for="password">Contraseña</label>
         <input class="input" type="password" name="password" value="">
@@ -50,7 +48,7 @@
       </div>
     </form>
   </main>
-<!--   <script src="/js/validationsLogin.js"></script> -->
+  <!-- <script src="/js/validationsLogin.js"></script> -->
   </body>
   <%- include('../partials/footer') %>
 

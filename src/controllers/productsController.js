@@ -76,7 +76,7 @@ const productsController = {
                                     size_id: req.body.size,
                                     category_id: req.body.category,
                                     brand_id: req.body.brand,
-                                    image: req.files[0] != undefined ? req.files[0].filename : 'no-image',
+                                    image: req.files[0] != undefined ? req.files[0].filename : 'no-image-product.png',
                                     details: req.body.details
                                 }
                             )

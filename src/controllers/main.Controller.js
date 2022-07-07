@@ -1,5 +1,5 @@
 const path = require('path');
-
+const db = require('../database/models');
 
 
 
@@ -11,7 +11,13 @@ const mainController = {
         res.render('./partials/header')
     },
     home: function (req, res) {
-        res.render('home');
+        db.Product.findAll({
+            limit: 6,
+            include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
+        })
+            .then(producto => {
+                res.render('home', { producto: producto })
+            })
     },
     carrito: (req, res) => {
         res.render('carrito');

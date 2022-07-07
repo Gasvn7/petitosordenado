@@ -22,15 +22,25 @@ const usersAPIController = {
     detail: (req, res) => {
         db.User.findByPk(req.params.id)
             .then((user) => {
-                let respuesta = {
-                    id: user.id,
-                    first_name: user.first_name,
-                    last_name: user.last_name,
-                    email: user.email,
-                    image: 'http://localhost:3500/api/usersImages/' + user.image
-                }
+                if(user == null){
 
-                res.status(200).json(respuesta)
+                    res.status(200).json({
+                       NonExistent: 'El usuario no existe en la base de datos'
+                    })
+
+                } else {
+                    
+                    let respuesta = {
+                        id: user.id,
+                        first_name: user.first_name,
+                        last_name: user.last_name,
+                        email: user.email,
+                        image: 'http://localhost:3500/api/usersImages/' + user.image
+                    }
+    
+                    res.status(200).json(respuesta)
+                }
+                
             })
             .catch(e => { res.render(e)})
     }

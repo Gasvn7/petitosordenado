@@ -18,7 +18,7 @@ router.get('/crear', authMiddleware, productsController.add);
 router.post('/', uploadFile.any(), Creacion ,productsController.crear);
 
 //* Listado de productos - VISTA
-router.get('/listado', productsController.listadodeproductos);
+router.get('/listado', authMiddleware, productsController.listadodeproductos);
 router.get('/listado2', productsController.listadodeproductos2);
 
 //* Editar producto - VISTA

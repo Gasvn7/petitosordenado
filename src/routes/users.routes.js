@@ -8,7 +8,7 @@ const usersController = require('../controllers/usersController.js')
 
 //* MIDDLEWARE *//
 // Para enviar los errores de validación al usuario
-const { Registro } = require('../middleware/validation')
+const { Registro, Login } = require('../middleware/validation')
 
 // Para verificar si ya inicio sesión el usuario
 const guestMiddleware = require('../middleware/guestMiddleware')
@@ -26,7 +26,7 @@ router.get('/register', guestMiddleware, usersController.register);
 router.post('/', uploadFile.any(), Registro, usersController.registration);
 // LOGIN
 router.get('/login', guestMiddleware, usersController.login);
-router.post('/login', usersController.loginProcess);
+router.post('/login', Login, usersController.loginProcess);
 // PERFIL
 router.get('/perfil', authMiddleware, usersController.profile);
 // LOGOUT
