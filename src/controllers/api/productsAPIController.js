@@ -10,8 +10,6 @@ const productsAPIController = {
                 let categoryCount = 1;
                 for(let i = 1; i < product.length; i++){
                     if (product[i].category_id != 19){
-                        console.log('Me estoy ejecutando')
-                        console.log(categoryCount)
                         categoryCount += 1;
                     }
                 };
@@ -38,17 +36,15 @@ const productsAPIController = {
                 }
 
                 let respuesta = {
-                    meta: {
-                        count: product.length,
-                        categoryCount: categoryCount,
-                        brandCount: brandCount,
-                        sizeCount: sizeCount
-                    },
+                    count: product.length,
+                    categoryCount: categoryCount,
+                    brandCount: brandCount,
+                    sizeCount: sizeCount,
                     products: product
                 }
                 res.status(200).json(respuesta)
             })
-            /* .catch(e => { res.render(e) }) */
+            .catch(e => { res.render(e) })
     },
     detail: (req, res) => {
         let productId = req.params.id;
@@ -78,7 +74,7 @@ const productsAPIController = {
                 }
 
             })
-            /* .catch(e => { res.render(e) }) */
+            .catch(e => { res.render(e) })
     }
 }
 
