@@ -35,7 +35,8 @@ const usersAPIController = {
                         first_name: user.first_name,
                         last_name: user.last_name,
                         email: user.email,
-                        image: 'http://localhost:3500/api/usersImages/' + user.image
+                        image: 'http://localhost:3500/api/usersImages/' + user.image,
+                        created_at: user.created_at
                     }
     
                     res.status(200).json(respuesta)
@@ -43,6 +44,16 @@ const usersAPIController = {
                 
             })
             .catch(e => { res.render(e)})
+    },
+    new: (req,res) => {
+        db.User.findOne({
+            order:[['updated_at','DESC']]
+        })
+        .then((users) => {
+
+            res.status(200).json(users)
+        })
+        .catch(e => { res.render(e) })
     }
 }
 

@@ -1,6 +1,26 @@
 const db = require('../../database/models');
 
 const productsAPIController = {
+    categories: (req, res) => {
+        let product = db.Product.findAll({
+            include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
+        });
+        let brand = db.Brand.findAll();
+        let category = db.Category.findAll();
+        let size = db.Size.findAll();
+
+        Promise
+            .all([product, brand, category, size])
+            .then(([product, brand, category, size]) => {
+                let categoryCount = []
+                product.map((prod)=>{
+                    categoryCount.push(prod.category_id)
+                })
+                
+                console.log(categoryCount)
+            })
+            .catch(error => res.send(error))
+    },
     list: (req, res) => {
         db.Product.findAll({
            /*  include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }] */
