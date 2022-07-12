@@ -6,10 +6,14 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require('method-override');
-const userLoggedMiddleware = require('./middleware/userLoggedMiddleware')
+const userLoggedMiddleware = require('./middleware/userLoggedMiddleware');
+const cors = require('cors');
 
 //* EXPRESS *//
 const app = express();
+
+//* CORS *//
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
