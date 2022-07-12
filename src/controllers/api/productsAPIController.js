@@ -2,7 +2,17 @@ const db = require('../../database/models');
 
 const productsAPIController = {
     categories: (req, res) => {
-        let product = db.Product.findAll({
+        db.Category.findAll()
+        .then(categories=>{
+            let respuesta = {
+                count: categories.length,
+                categories: categories
+            }
+
+            res.status(200).json(respuesta)
+        })
+        //! Intento de resolver sprint8 dashboard: Mostrar las categorías con cuantos productos hay en las mismas.
+        /* let product = db.Product.findAll({
             include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
         });
         let brand = db.Brand.findAll();
@@ -19,7 +29,7 @@ const productsAPIController = {
                 
                 console.log(categoryCount)
             })
-            .catch(error => res.send(error))
+            .catch(error => res.send(error)) */
     },
     list: (req, res) => {
         db.Product.findAll({
