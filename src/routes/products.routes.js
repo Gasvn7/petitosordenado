@@ -12,7 +12,7 @@ const { Creacion, Editando } = require('../middleware/validation');
 //! CRUD db
 
 //* Creación de producto - VISTA
-router.get('/crear', productsController.add);
+router.get('/crear',authMiddleware, productsController.add);
 
 //* Creación de producto - POST
 router.post('/', uploadFile.any(), Creacion ,productsController.crear);

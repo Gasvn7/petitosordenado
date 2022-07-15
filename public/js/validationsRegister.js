@@ -10,14 +10,14 @@ let errorText = document.querySelector('.text-danger-text')
 const expresiones = {
     name: /^[a-zA-Z0-9S\_\-\s]{5,15}$/, // Letras, numeros, guion y guion_bajo
     lastname: /^[a-zA-Z0-9S\_\-\s]{5,15}$/, // Letras, numeros, guion y guion_bajo
-    /* email: /^[a-zA-Z0-9S\_\-\@\w-\.\s]{5,15}$/, // Letras, numeros, guion y guion_bajo */
+    email: /^[a-zA-Z0-9S\_\-\s]{5,15}$/, // Letras, numeros, guion y guion_bajo
     password:  /^[a-zA-ZÀ-ÿ0-9\_\s]{5,200}$/, // Letras y espacios, pueden llevar acentos.
 }
 
 const campos = {
     nameC: false,
     lastnameC: false,
-    /* emailC: false, */
+    
     passwordC: false,
 }
 
@@ -28,10 +28,8 @@ const validarFormulario = (e) => {
         break;
         case "last_name":
             validarCampo(expresiones.email, e.target, 'lastnameC', 'lastnameText');
+        
         break;
-/*         case "email":
-            validarCampo(expresiones.email, e.target, 'emailC', 'emailText');
-        break; */
         case "password":
             validarCampo(expresiones.password, e.target, 'passwordC', 'passText');
         break;
@@ -50,11 +48,11 @@ const validarCampo = (expresion, input, campo, text) => {
             console.log(campos.emailC);
             campos[campo] = false;
         }
-/*         if(text === 'emailText'){
+        if(text === 'emailText'){
             emailText.innerHTML = '<span>Ingresa un email válido</span>'
             console.log(campos.emailC);
             campos[campo] = false;
-        } */
+        }
         if(text === 'passText'){
             passText.innerHTML = '<span>Ingresa una contraseña válida</span>'
             console.log(campos.passwordC);
@@ -71,12 +69,8 @@ const validarCampo = (expresion, input, campo, text) => {
             console.log(campos.lastnameC);
             campos[campo] = true;
         }
-/*         if(text === 'emailText'){
-            emailText.innerHTML = []; 
-            console.log(campos.emailC);
-            campos[campo] = true;
-        } */
-        if(text === 'passText'){
+        
+        if(text === toString){
             passText.innerHTML = [];
             console.log(campos.passwordC);
             campos[campo] = true;
@@ -92,7 +86,7 @@ inputs.forEach((input)=>{
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    if(!(campos.nameC && campos.lastnameC /* && campos.emailC */ && campos.passwordC)) {
+    if(!(campos.nameC && campos.lastnameC )) {
         //! SI LOS DATOS SON INCORRECTOS
         console.log(campos);
         errorText.style.alignContent = 'center';
