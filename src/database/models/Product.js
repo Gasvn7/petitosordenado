@@ -45,15 +45,18 @@ module.exports = (sequelize, dataTypes) => {
     Product.associate = models => {
         Product.belongsTo(models.Category, {
             as: 'categories',
-            foreignKey: 'category_id'
+            foreignKey: 'category_id',
+            foreignKey: 'id'
         });
         Product.belongsTo(models.Brand, {
             as: 'brands',
-            foreignKey: 'brand_id'
+            foreignKey: 'brand_id',
+            foreignKey: 'id'
         });
         Product.belongsTo(models.Size, {
             as: 'sizes',
-            foreignKey: 'size_id'
+            foreignKey: 'size_id',
+            foreignKey: 'id'
         });
         Product.belongsToMany(models.Order, {
             as: 'orders',

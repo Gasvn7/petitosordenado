@@ -1,18 +1,20 @@
 const db = require('../database/models');
 const { validationResult } = require('express-validator');
+const Product = require('../database/models/Product');
 
 const productsController = {
     listadodeproductos: (req, res) => {
         db.Product.findAll({
             include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
         })
-            .then(producto => {
-                res.render('products/listado', { producto: producto })
+            .then(Product => {
+                console.log(Product)
+                res.render('products/listado', { Product: Product })
             })
     },
     listadodeproductos2: (req, res) => {
         db.Product.findAll({
-            include: [{ association: 'brands' }, { association: 'sizes' }, { association: 'categories' }]
+            include: [{ association: 'brands' }, { association: 'size' }, { association: 'categories' }]
         })
             .then(producto => {
                 res.render('products/listado2', { producto: producto })
