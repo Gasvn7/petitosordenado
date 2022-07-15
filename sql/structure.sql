@@ -41,6 +41,8 @@ LOCK TABLES `brands` WRITE;
 /*!40000 ALTER TABLE `brands` DISABLE KEYS */;
 INSERT INTO `brands` VALUES (1,'Royal Canin - Perro',NULL,NULL,NULL),(2,'Prop Plan - Perro',NULL,NULL,NULL),(3,'Eukanuba',NULL,NULL,NULL),(4,'Excellent - Perro',NULL,NULL,NULL),(5,'Dog Chow',NULL,NULL,NULL),(6,'Royal Canin - Gato',NULL,NULL,NULL),(7,'Prop Plan - Gato',NULL,NULL,NULL),(8,'Nutrique',NULL,NULL,NULL),(9,'Excellent - Gato',NULL,NULL,NULL),(10,'Cat Chow',NULL,NULL,NULL),(11,'Sin marca',NULL,NULL,NULL);
 /*!40000 ALTER TABLE `brands` ENABLE KEYS */;
+
+
 UNLOCK TABLES;
 
 --
@@ -151,7 +153,7 @@ CREATE TABLE `products` (
   `price` int(11) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `details` varchar(100) DEFAULT NULL,
-  `image` varchar(100) DEFAULT NULL,
+  `image` varchar(100) DEFAULT "no-image-product.png",
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -172,7 +174,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,5,1,1,'Alimento Royal Canin para Perro Vegano',600,50,'Alimento bonito y rico para tu perrito bonito y chikito',NULL,NULL,NULL,NULL),(2,5,6,2,'Alimento Royal Canin para Gato Vegano',600,50,'Alimento bonito y rico para tu gatito bonito y chikito',NULL,NULL,NULL,NULL),(3,5,11,3,'Peluche de Goku anti-estres',166,15,'Peluche anti-estres con diseño de Goku de serie famosa china',NULL,NULL,NULL,NULL),(4,5,11,4,'Peluche de Vegeta anti-estres',166,15,'Peluche anti-estres con diseño de Vegeta de serie famosa turca',NULL,NULL,NULL,NULL),(5,2,11,5,'Camisa de leñador',375,30,'Camisa de leñador para perrito fachera, fecherita para tu perro leñador',NULL,NULL,NULL,NULL),(6,1,11,6,'Remera de Hello Kitty',1000,50,'Remera de Hello Kitty para tu gatito aesthetic',NULL,NULL,NULL,NULL);
+INSERT INTO `products` VALUES (1,5,1,1,'Alimento Royal Canin para Perro Vegano',600,50,'Alimento bonito y rico para tu perrito bonito y chikito',"no-image-product.png",NULL,NULL,NULL),(2,5,6,2,'Alimento Royal Canin para Gato Vegano',600,50,'Alimento bonito y rico para tu gatito bonito y chikito',"no-image-product.png",NULL,NULL,NULL),(3,5,11,3,'Peluche de Goku anti-estres',166,15,'Peluche anti-estres con diseño de Goku de serie famosa china',"no-image-product.png",NULL,NULL,NULL),(4,5,11,4,'Peluche de Vegeta anti-estres',166,15,'Peluche anti-estres con diseño de Vegeta de serie famosa turca',"no-image-product.png",NULL,NULL,NULL),(5,2,11,5,'Camisa de leñador',375,30,'Camisa de leñador para perrito fachera, fecherita para tu perro leñador',"no-image-product.png",NULL,NULL,NULL),(6,1,11,6,'Remera de Hello Kitty',1000,50,'Remera de Hello Kitty para tu gatito aesthetic',"no-image-product.png",NULL,NULL,NULL);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
